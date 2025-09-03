@@ -1,5 +1,4 @@
 # Ignoring Quarto rendered output
-.quarto
-_site
-Thumbs.db
 /.quarto/
+/_site/
+Thumbs.db
