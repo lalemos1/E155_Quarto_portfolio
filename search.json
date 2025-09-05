@@ -1,45 +1,38 @@
 [
   {
-    "objectID": "labs/lab1/lab1.html",
-    "href": "labs/lab1/lab1.html",
-    "title": "Lab 1 - Seven segment display",
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "Labs",
     "section": "",
-    "text": "The following describes the SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.\n\n\n\nA simple decoder was used to translate the input from a 4-throw switch into a hexadecimal output on a common-anode seven segment display.\nThe FPGA’s on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive SystemVerilog library was used to generate a clock signal at 48 MHz. A counter was then used to divide the signal down to 12 MHz, where the LED was driven according to the 25th bit to blink at 2.86 Hz.\n\n\n\nThe source code for the project can be found in the E155 GitHub repository under “lab1-fpga-7-seg-display.”\n\n\n Figure 1: LED and seven segment display SystemVerilog block diagram.\nThe block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.\n\n\n\n Figure 2: Seven segment display and LEDs circuit schematic.\nFigure 2 shows the system as arranged on the PCB (the LEDs) and the breadboard (7-segment-display). The seven segment display and each of the three onboard LEDs are current limited using a 1kΩ resister. Each segment of the display is controlled active-low by the FPGA on the PCB. Results and Discussion\n Figure 3: The lab1_ll top module functioning in simulation.\n Figure 4: Led0 blinking on after many clock ticks.\n Figure 5: The seven-seg-display module properly decoding according to its inputs.\nThe display functions in simulation. I did not write an automatic testbench; these simulation results were from manual forcing.\n Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz. The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6.\n\n\n\n\nThe design was mostly successful, with some omissions mainly due to time constraints. I spent 20 hours working on this lab.\nI spent more time than I would have liked on the PCB due to missing parts, resoldering components which were misaligned, and fixing the LED solder pads which I had damaged. Radiant and its debugger were also frustrating to get working.\nDue to feeling rushed, I don’t believe that I ensured the MCU is fully functional, since when I went through the tutorial, the LEDs were behaving oddly. I did not fully diagnose this bug.\nIn the future, I will block more time in advance to finish more of future labs sooner in the week.\n\n\n\nThis was not attempted."
-  },
-  {
-    "objectID": "labs/lab1/lab1.html#introduction",
-    "href": "labs/lab1/lab1.html#introduction",
-    "title": "Lab 1 - Seven segment display",
-    "section": "",
-    "text": "The following describes the SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA."
+    "text": "Lab 1: Seven segment display\n\n\n\n\n\nThe SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "labs/lab1/lab1.html#design-and-testing-methodology",
     "href": "labs/lab1/lab1.html#design-and-testing-methodology",
-    "title": "Lab 1 - Seven segment display",
-    "section": "",
-    "text": "A simple decoder was used to translate the input from a 4-throw switch into a hexadecimal output on a common-anode seven segment display.\nThe FPGA’s on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive SystemVerilog library was used to generate a clock signal at 48 MHz. A counter was then used to divide the signal down to 12 MHz, where the LED was driven according to the 25th bit to blink at 2.86 Hz."
+    "title": "Lab 1: Seven segment display",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nA simple decoder was used to translate the input from a 4-throw switch into a hexadecimal output on a common-anode seven segment display.\nThe FPGA’s on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive SystemVerilog library was used to generate a clock signal at 48 MHz. A counter was then used to divide the signal down to 12 MHz, where the LED was driven according to the 25th bit to blink at 2.86 Hz."
   },
   {
     "objectID": "labs/lab1/lab1.html#technical-documentation",
     "href": "labs/lab1/lab1.html#technical-documentation",
-    "title": "Lab 1 - Seven segment display",
-    "section": "",
-    "text": "The source code for the project can be found in the E155 GitHub repository under “lab1-fpga-7-seg-display.”\n\n\n Figure 1: LED and seven segment display SystemVerilog block diagram.\nThe block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.\n\n\n\n Figure 2: Seven segment display and LEDs circuit schematic.\nFigure 2 shows the system as arranged on the PCB (the LEDs) and the breadboard (7-segment-display). The seven segment display and each of the three onboard LEDs are current limited using a 1kΩ resister. Each segment of the display is controlled active-low by the FPGA on the PCB. Results and Discussion\n Figure 3: The lab1_ll top module functioning in simulation.\n Figure 4: Led0 blinking on after many clock ticks.\n Figure 5: The seven-seg-display module properly decoding according to its inputs.\nThe display functions in simulation. I did not write an automatic testbench; these simulation results were from manual forcing.\n Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz. The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6."
+    "title": "Lab 1: Seven segment display",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the E155 GitHub repository under “lab1-fpga-7-seg-display.”\n\nBlock Diagram\n Figure 1: LED and seven segment display SystemVerilog block diagram.\nThe block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.\n\n\nSchematic\n Figure 2: Seven segment display and LEDs circuit schematic.\nFigure 2 shows the system as arranged on the PCB (the LEDs) and the breadboard (7-segment-display). The seven segment display and each of the three onboard LEDs are current limited using a 1kΩ resister. Each segment of the display is controlled active-low by the FPGA on the PCB. Results and Discussion\n Figure 3: The lab1_ll top module functioning in simulation.\n Figure 4: Led0 blinking on after many clock ticks.\n Figure 5: The seven-seg-display module properly decoding according to its inputs.\nThe display functions in simulation. I did not write an automatic testbench; these simulation results were from manual forcing.\n Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz. The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6."
   },
   {
     "objectID": "labs/lab1/lab1.html#conclusion",
     "href": "labs/lab1/lab1.html#conclusion",
-    "title": "Lab 1 - Seven segment display",
-    "section": "",
-    "text": "The design was mostly successful, with some omissions mainly due to time constraints. I spent 20 hours working on this lab.\nI spent more time than I would have liked on the PCB due to missing parts, resoldering components which were misaligned, and fixing the LED solder pads which I had damaged. Radiant and its debugger were also frustrating to get working.\nDue to feeling rushed, I don’t believe that I ensured the MCU is fully functional, since when I went through the tutorial, the LEDs were behaving oddly. I did not fully diagnose this bug.\nIn the future, I will block more time in advance to finish more of future labs sooner in the week."
+    "title": "Lab 1: Seven segment display",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design was mostly successful, with some omissions mainly due to time constraints. I spent 20 hours working on this lab.\nI spent more time than I would have liked on the PCB due to missing parts, resoldering components which were misaligned, and fixing the LED solder pads which I had damaged. Radiant and its debugger were also frustrating to get working.\nDue to feeling rushed, I don’t believe that I ensured the MCU is fully functional, since when I went through the tutorial, the LEDs were behaving oddly. I did not fully diagnose this bug.\nIn the future, I will block more time in advance to finish more of future labs sooner in the week."
   },
   {
     "objectID": "labs/lab1/lab1.html#ai-prototype-summary",
     "href": "labs/lab1/lab1.html#ai-prototype-summary",
-    "title": "Lab 1 - Seven segment display",
-    "section": "",
-    "text": "This was not attempted."
+    "title": "Lab 1: Seven segment display",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nThis was not attempted."
   },
   {
     "objectID": "blog.html",
@@ -53,6 +46,6 @@
     "href": "index.html",
     "title": "E155 Portfolio",
     "section": "",
-    "text": "Lucas Lemos is a Senior undergraduate at Harvey Mudd College studying for a B.S. Engineering. He is a self-motivated engineer & student leader passionate about merging creative design and technical expertise. He has proficiency and interest in controls and electronics. He has designed an embedded"
+    "text": "Lucas Lemos is a senior undergraduate at Harvey Mudd College studying for a B.S. Engineering. He is a self-motivated engineer & student leader passionate about merging creative design and technical expertise. He has proficiency and interest in controls and electronics. Lucas has designed an embedded audio system and PCB for Motiv Electric Trucks, an analog instrumentation PCB for the HRL Labs Clinic Team, a QTP test rack for qualifying the reactor control system PCBAs for Radiant Nuclear, and is currently developing power electronics for the Exolambda Clinic team."
   }
 ]

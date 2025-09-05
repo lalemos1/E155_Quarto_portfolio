@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="The SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.">
 
-<title>lab1 – E155 Portfolio</title>
+<title>Lab 1: Seven segment display – E155 Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -120,10 +121,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lab-1---seven-segment-display" id="toc-lab-1---seven-segment-display" class="nav-link active" data-scroll-target="#lab-1---seven-segment-display">Lab 1 - Seven segment display</a>
-  <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
+  <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link active" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a>
   <ul class="collapse">
   <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
@@ -131,22 +129,37 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#ai-prototype-summary" id="toc-ai-prototype-summary" class="nav-link" data-scroll-target="#ai-prototype-summary">AI Prototype Summary</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 1: Seven segment display</h1>
+</div>
+
+<div>
+  <div class="description">
+    The SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-<section id="lab-1---seven-segment-display" class="level1">
-<h1>Lab 1 - Seven segment display</h1>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The following describes the SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.</p>
-</section>
+</header>
+
+
+<p><img src=".\images\lab1_physical_circuit.jpg" class="img-fluid"></p>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
 <p>A simple decoder was used to translate the input from a 4-throw switch into a hexadecimal output on a common-anode seven segment display.</p>
@@ -154,10 +167,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
-<p>The source code for the project can be found in the E155 GitHub repository under “lab1-fpga-7-seg-display.”</p>
+<p>The source code for the project can be found in the <a href="https://github.com/lalemos1/E155-uP-labs">E155 GitHub repository</a> under “<a href="https://github.com/lalemos1/E155-uP-labs/tree/main/lab1-fpga-7-seg-display/fpga/radiant_project/lab1_ll">lab1-fpga-7-seg-display</a>.”</p>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
-<p><img src="..\lab1\images\lab1_block_diagram.jpg" class="img-fluid"> Figure 1: LED and seven segment display SystemVerilog block diagram.</p>
+<p><img src=".\images\lab1_block_diagram.jpg" class="img-fluid"> Figure 1: LED and seven segment display SystemVerilog block diagram.</p>
 <p>The block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.</p>
 </section>
 <section id="schematic" class="level3">
@@ -183,7 +196,6 @@ ul.task-list li input[type="checkbox"] {
 <p>This was not attempted.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
