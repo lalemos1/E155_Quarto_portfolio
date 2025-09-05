@@ -145,6 +145,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Lab 1 - Seven segment display</h1>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The following describes the SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
@@ -156,18 +157,18 @@ ul.task-list li input[type="checkbox"] {
 <p>The source code for the project can be found in the E155 GitHub repository under “lab1-fpga-7-seg-display.”</p>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
-<p>Figure 1: LED and seven segment display SystemVerilog block diagram.</p>
+<p><img src="..\lab1\images\lab1_block_diagram.jpg" class="img-fluid"> Figure 1: LED and seven segment display SystemVerilog block diagram.</p>
 <p>The block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.</p>
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<p>Figure 2: Seven segment display and LEDs circuit schematic.</p>
+<p><img src="..\lab1\images\lab1_schematic.jpg" class="img-fluid"> Figure 2: Seven segment display and LEDs circuit schematic.</p>
 <p>Figure 2 shows the system as arranged on the PCB (the LEDs) and the breadboard (7-segment-display). The seven segment display and each of the three onboard LEDs are current limited using a 1kΩ resister. Each segment of the display is controlled active-low by the FPGA on the PCB. Results and Discussion</p>
-<p>Figure 3: The lab1_ll top module functioning in simulation.</p>
-<p>Figure 4: Led0 blinking on after many clock ticks.</p>
-<p>Figure 5: The seven-seg-display module properly decoding according to its inputs.</p>
+<p><img src="..\lab1\images\lab1_top_sim.png" class="img-fluid"> Figure 3: The lab1_ll top module functioning in simulation.</p>
+<p><img src="..\lab1\images\lab1_led0_blink_sim.png" class="img-fluid"> Figure 4: Led0 blinking on after many clock ticks.</p>
+<p><img src="..\lab1\images\lab1_seven_seg_sim.png" class="img-fluid"> Figure 5: The seven-seg-display module properly decoding according to its inputs.</p>
 <p>The display functions in simulation. I did not write an automatic testbench; these simulation results were from manual forcing.</p>
-<p>Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz. The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6.</p>
+<p><img src="..\lab1\images\lab1_led0_blink_trace.jpg" class="img-fluid"> Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz. The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
