@@ -1,0 +1,8 @@
+---
+title: "Labs"
+listing:
+  contents: 
+    - lab1.qmd
+    - lab2.qmd
+  type: default
+---

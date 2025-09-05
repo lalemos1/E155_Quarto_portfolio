@@ -1,0 +1,56 @@
+---
+title: "Lab 1: Seven segment display"
+description: "The SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA."
+image: .\images\lab1_physical_circuit.jpg
+---
+![](.\images\lab1_physical_circuit.jpg)
+
+## Design and Testing Methodology
+A simple decoder was used to translate the input from a 4-throw switch into a hexadecimal output on a common-anode seven segment display. 
+
+The FPGA’s on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive SystemVerilog library was used to generate a clock signal at 48 MHz. A counter was then used to divide the signal down to 12 MHz, where the LED was driven according to the 25th bit to blink at 2.86 Hz. 
+
+## Technical Documentation
+The source code for the project can be found in the [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab1-fpga-7-seg-display](https://github.com/lalemos1/E155-uP-labs/tree/main/lab1-fpga-7-seg-display/fpga/radiant_project/lab1_ll).”
+
+### Block Diagram
+ 
+![](.\images\lab1_block_diagram.jpg)
+Figure 1: LED and seven segment display SystemVerilog block diagram.
+
+The block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.
+
+### Schematic
+
+![](..\lab1\images\lab1_schematic.jpg)
+Figure 2: Seven segment display and LEDs circuit schematic.
+
+Figure 2 shows the system as arranged on the PCB (the LEDs) and the breadboard (7-segment-display). The seven segment display and each of the three onboard LEDs are current limited using a 1kΩ resister. Each segment of the display is controlled active-low by the FPGA on the PCB.
+Results and Discussion
+ 
+![](..\lab1\images\lab1_top_sim.png)
+Figure 3: The lab1_ll top module functioning in simulation.
+
+![](..\lab1\images\lab1_led0_blink_sim.png)
+Figure 4: Led0 blinking on after many clock ticks.
+
+![](..\lab1\images\lab1_seven_seg_sim.png)
+Figure 5: The seven-seg-display module properly decoding according to its inputs.
+
+The display functions in simulation. I did not write an automatic testbench; these simulation results were from manual forcing.
+
+![](..\lab1\images\lab1_led0_blink_trace.jpg)
+Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz.
+The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6.
+
+## Conclusion
+The design was mostly successful, with some omissions mainly due to time constraints. I spent 20 hours working on this lab. 
+
+I spent more time than I would have liked on the PCB due to missing parts, resoldering components which were misaligned, and fixing the LED solder pads which I had damaged. Radiant and its debugger were also frustrating to get working. 
+
+Due to feeling rushed, I don’t believe that I ensured the MCU is fully functional, since when I went through the tutorial, the LEDs were behaving oddly. I did not fully diagnose this bug.
+
+In the future, I will block more time in advance to finish more of future labs sooner in the week.
+
+## AI Prototype Summary
+This was not attempted.

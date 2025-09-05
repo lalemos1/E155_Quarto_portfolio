@@ -1,5 +1,15 @@
 ---
 title: "E155 Portfolio"
+image: images/headshot.jpeg
+about:
+    template: jolla
+    links:
+     - icon: linkedin
+       text: LinkedIn
+       href: https://www.linkedin.com/in/lucas-a-lemos/
+     - icon: github
+       text: Github
+       href: https://github.com/lalemos1
 ---
 
-My Quarto E155 portfolio
+Lucas Lemos is a senior undergraduate at Harvey Mudd College studying for a B.S. Engineering. He is a self-motivated engineer & student leader passionate about merging creative design and technical expertise. He has proficiency and interest in controls and electronics. Lucas has designed an embedded audio system and PCB for Motiv Electric Trucks, an analog instrumentation PCB for the HRL Labs Clinic Team, a QTP test rack for qualifying the reactor control system PCBAs for Radiant Nuclear, and is currently developing power electronics for the Exolambda Clinic team.
