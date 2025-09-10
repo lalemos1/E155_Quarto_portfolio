@@ -1,0 +1,90 @@
+---
+title: "Lab 2: Time Multiplexing Two Displays"
+description: "The SystemVerilog implementation and simulation of a time multiplexed seven segment decoder which outputs to a 2-digit display."
+image: .\images\lab2_physical_circuit.jpg
+---
+![](.\images\lab2_physical_circuit.jpg)
+
+## Design and Testing Methodology
+One seven segment display decoder was time multiplexed to two seven segment displays. 
+Time multiplexing is where one expensive component is used for multiple different tasks at different times, synchronized to a clock.
+The time multiplexing was implemented by giving the decoder the output of two 4-throw switches at different times as selected by a divided clock and a multiplexer.
+Additionally, which digit of the 2-digit display was enabled according to the divided clock.
+A nominal clock frequency of 80 Hz was chosen to eliminate visible flicker without being so high as to bleed the two digits together.
+
+A five LED counter counts the sum of both 4-throw switches to ensure proper switch input to the time multiplexer.
+
+## Technical Documentation
+The source code for the project can be found in the [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab2_ll_two_displays](https://github.com/lalemos1/E155-uP-labs/tree/main/lab2_ll_two_displays/fpga).”
+
+### Block Diagram
+ 
+![](.\images\lab2_block_diagram.jpg)
+Figure 1: Block diagram of SystemVerilog modules.
+
+The block diagram in Figure 1 shows the lab2_ll_two_displays top module, and the led_cnt_adder, switch_mux, seven_seg_display, clk_divider, and HSOSC submodules.
+
+### Schematic
+
+![](.\images\lab2_schematic.jpg)
+Figure 2: Circuit schematic of the 2-digit display and LED counter circuit.
+
+Figure 2 shows the two 4-throw switches, reset button, 2-digit seven segment display, switch count LEDs, and two PNP transistors for sourcing current to the display.
+The display and counter LEDs are nominally current limited to 10mA using a 330Ω resister, while the PNP base current is nominally limited to 0.7mA using a 4.7kΩ resister.
+
+### Results and Discussion
+ 
+![](.\images\lab2_ll_sim.png)
+Figure 3: The lab2_ll_two_displays top module functioning in simulation.
+
+![](.\images\clk_divider_sim.png)
+Figure 4: The clock divier module properly dividing the clock according to the set divisor.
+
+![](.\images\mux2_sim.png)
+Figure 5: The 2:1 4-bit switch mux demonstrating proper channel selection.
+
+![](.\images\adder4_sim.png)
+Figure 6: The 4-bit LED count adder demonstrating proper addition.
+
+
+The time multiplexed display functions in simulation. 
+Some testbenches were fully automatic, others required visual verification since I ran out of time to fully automate them.
+The lab2_ll_sim doesn't show the negated, divided clock because it was a last-minute bug-fix, but the negated clock does function in hardware.
+
+
+
+## Conclusion
+I believe this design and implementation meets the criteria for proficiency, although fails to meet certain excellence metrics.
+I would have fixed the last few bugs if given more time.
+The following bugs still present are:
+
+1. clk_div is (I think) 40 Hz, not 80Hz, which causes flickering.
+2. switch2's pinout to the FPGA is backwards, and the switch activates in the "off" position.
+3. All of the LEDs are really dim.
+4. The display changes in brightness depending on how many segments are activated.
+5. Huge risk of resisters shorting on the current breadboard--I need a bigger breadboard.
+
+I spent 23 hours working on this lab. 
+The greatest time sink was redesigning my clock divider from lab 1 and writing automatic testbenches for each submodule.
+
+## AI Prototype Summary
+The two prompts were as follows:
+"Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits."
+
+and
+
+"Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits. Use the seven segment decoder and oscillator (inside lab1_ll) provided in the attached files."
+
+The quality of the AI output was higher than I expected, but still less than ideal.
+In the response to the first prompt, the AI generated a digitally controlled oscillator for dividing the clock which triggered on both the positive and negative edges of the clock, which is risky according to synchronous design.
+It also implemented selection using if/else in an always_comb block, which would've been better represented as a ternary statement to better use the multiplexer idiom. 
+Lastly, it is not modularized and so would be difficul to test, although this could easily be fixed by prompting the AI further.
+Despite these flaws, the first prompt produced a fairly high quality result in seconds, and synthesized first try. 
+
+The response to the second prompt, which included my code from lab 1, was similarly surprisingly good despite some notable flaws. Again, the HDL code synthesized first try.
+The second prompt did not actually include the counter and HSOSC I provided it, and instead wrote its own inferior digitally controlled oscillator which again overly relies on if/else statements.
+
+There was nothing about the code of these outputs which actually surprised me, and it ended up creating seemingly usable if slightly amateur code. 
+The quality could likely be improved with more expert prompting.
+This helps me to realize that if I am to incorporate an LLM into my workflow, I shouldn't depend on its proposed solution sine it's likely suboptimal.
+I first need a clear idea of exactly what hardware to implement and loosely how, and only depend on the AI to write what I already know how to write.
