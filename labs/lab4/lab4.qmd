@@ -1,0 +1,51 @@
+---
+title: "Lab 4: PWM Fur Elise on a Microcontroller "
+description: "The bare metal C implementation and circuit for playing the song Fur Elise from a microcontroller using a general purpose timer peripheral."
+image: .\images\lab4_physical_circuit.jpg
+---
+![](.\images\lab4_physical_circuit.jpg)
+
+## Design and Testing Methodology
+#####################
+
+## Technical Documentation
+The source code for the project can be found in my [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab4_audio](https://github.com/lalemos1/E155-uP-labs/tree/main/lab4_audio/mcu).”
+
+### Schematic
+
+![](.\images\lab4_schematic.jpg)
+Figure 1: Circuit schematic of 
+
+Figure 1 shows ###############
+
+### Results and Discussion
+ 
+![](.\images\.png)
+Figure 2: 
+
+![](.\images\.png)
+Figure 3: 
+
+![](.\images\.png)
+Figure 4: 
+
+The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected. 
+
+
+## Conclusion
+This lab nearly meets excellence, although it is missing the criterion where if two buttons are pressed and one is released, the second button press is registered.
+
+There are also the following known issues:
+1. Reset still trips the debounce high for some reason
+2. Needs to be manually reset upon startup
+3. Can't press zero twice for some reason
+4. The debounce_low fail criterion doesn't actually really work, although in hardware testing this was revealed to be unnecessary
+
+I spent about 15 hours working on this lab. 
+
+## AI Prototype Summary
+Prompt: What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? What’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?
+
+I was astounded by how mediocre the first attempt at prompting the LLM was and how useful the second attempt was when I attached the reference manual. The response blazingly faster (the first response took a whole 2 minutes to think; the second response was mere seconds). In addition, the output was of a much higher quality. The first response gave me false information, such as the existence of a general purpose "TIM17", and garbled register writes for things like configuring the GPIO (such as: `GPIOA->OSPEEDR = (GPIOA->OSPEEDR & ~(3U << (5*2))) | (1U << (5*2)); // medium`). The second response gave me a detailed set of options between using the PWM mode or the output capture modes. The formulae were about comparable. The LLM was able to summarize information in seconds which took me hours to derive from the confusing layout and wording of the reference manual. It is amazingly helpful for searching the reference manual.
+
+The second response was still slightly deficient in a few ways. Notably, it said nothing about why we were recommended to use TIM15/16, which was its lack of connection to any other peripherals. It also failed to recommend the far simpler approach of using software to write to a GPIO based on a timer overflow event rather than directly outputting the PWM. While both approaches work, it would've been nice if the LLM would've suggested the simpler approach for those short on time (like myself, as I always am in MicroP's).

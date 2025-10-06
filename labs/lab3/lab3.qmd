@@ -1,0 +1,101 @@
+---
+title: "Lab 3: Keypad Scanner with Two Digit Display"
+description: "The SystemVerilog implementation and simulation of a keypad scanner which reads user inputs from a 4x4 matrix keypad and displays them to a 2-digit display."
+image: .\images\lab3_physical_circuit.jpg
+---
+![](.\images\lab3_physical_circuit.jpg)
+
+## Design and Testing Methodology
+#####################
+
+## Technical Documentation
+The source code for the project can be found in my [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab3_keypad](https://github.com/lalemos1/E155-uP-labs/tree/main/lab3_keypad/fpga).”
+
+### Block Diagram
+![](.\images\lab3_block_diagram.jpg)
+Figure 1: Block diagram of SystemVerilog modules.
+
+![](.\images\.jpg)
+Figure x: Block diagram of scanner submodule.
+
+![](.\images\.jpg)
+Figure x: Block diagram of synchronizer submodule.
+
+![](.\images\.jpg)
+Figure x: Block diagram of #### submodule.
+
+The block diagram in Figure 1 shows the lab3_ll_keypad top module, and the ############ submodules. See lab 2 for the two_dig_display block diagram.
+
+### FSM Diagram
+![](.\images\lab3_scanner_fsm_diagram.jpg)
+Figure x: Diagram of the keypad scanner finite state machines
+
+![](.\images\lab3_col_fsm_diagram.jpg)
+Figure 
+
+![](.\images\lab3_digit_mem_fsm_diagram.jpg)
+Figure 
+
+
+### Schematic
+
+![](.\images\lab3_schematic.jpg)
+Figure 3: Circuit schematic of the 4x4 matrix keypad and 2-digit display with debugging LEDs.
+
+Figure 2 shows ###############
+The 2-digit display LEDs PNP base current is nominally limited to ####### using a ####### resister.
+
+### Results and Discussion
+ 
+![](.\images\lab3_ll_keypad.png)
+Figure 4: The lab3_ll_keypad top module functioning in simulation.
+
+![](.\images\scanner1.png)
+Figure 5: 
+
+![](.\images\scanner2.png)
+Figure 6:  
+
+![](.\images\scanner3.png)
+Figure 7: 
+
+![](.\images\digit_mem.png)
+Figure 8: 
+
+![](.\images\keypad_decoder.png)
+Figure 9: 
+
+![](.\images\scanner_fsm.png)
+Figure 10: 
+
+![](.\images\col_fsm.png)
+Figure 11: 
+
+![](.\images\debouncer.png)
+Figure 12: 
+
+![](.\images\counter.png)
+Figure 13: 
+
+The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected. 
+
+
+## Conclusion
+This lab nearly meets excellence, although it is missing the criterion where if two buttons are pressed and one is released, the second button press is registered.
+
+There are also the following known issues:
+1. Reset still trips the debounce high for some reason
+2. Needs to be manually reset upon startup
+3. Can't press zero twice for some reason
+4. The debounce_low fail criterion doesn't actually really work, although in hardware testing this was revealed to be unnecessary
+
+I spent about 30 hours working on this lab. 
+
+## AI Prototype Summary
+The monolithic prompt was certainly much more brief and was lacking certain necessary functions such as a debouncer. Both attempts synthesized immediately, although the decomposed prompt interestingly provided two approaches to solving the problem which halted synthesis until I commented out one of the options. Both modularized effectively, except the aforementioned missing functions.
+
+There were all kinds of neat SystemVerilog tricks I didn't know about, such as the $clog2() function which the number of bits needed to represent a number, or the ~| bitwise operator for reading whether any of the rows were true. I also especially like how the 7-seg decoder was laid out with a nice ASCII graphic of the 7 segments and using hex rather than binary for the case states. I also liked how the decomposed prompt separated the row + column combinations into a queryable table, which seemed like a logical way of decoding the result. 
+
+Both prompts were liable to create undriven connections and were definitely not usable without user-inputted debugging. I don't like how both prompts read the row inputs in a non-one-hot manner, and the monolithic prompt didn't even try decoding the input. The decomposed prompt did attempt this, but couldn't have done it correctly without a specific keypad spec. I also did not like how the decomposed prompt handled the debouncer by simply waiting for a counter period, without actually checking if the input was steady.
+
+In the future, I'll definitely try a decomposed approach, especially because it encourages me, the prompter, to be much more specific with my request and thereby improves the result. It also helps you as the designer to think about what exactly does your code need to implement when you go and write it yourself. Especially because I don't like immediately copying code from LLMs, but rather using them as example code to build my design around so I can think of each line of code as I write it. I also find LLMs much more useful for debugging, which we didn't handle here.

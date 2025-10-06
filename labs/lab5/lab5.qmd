@@ -1,0 +1,52 @@
+---
+title: "Lab 5: placeholder"
+description: "Placeholder."
+image: .\images\lab5_physical_circuit.jpg
+---
+![](.\images\lab5_physical_circuit.jpg)
+
+## Design and Testing Methodology
+#####################
+
+## Technical Documentation
+The source code for the project can be found in my [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[placeholder](https://github.com/lalemos1/E155-uP-labs/tree/main/lab5_placeholder).”
+
+### Interrupt Flowchart
+![](.\images\lab5_flowchart.jpg)
+Figure 1: Flow chart of 
+
+Figure 1 shows ###############
+
+### Schematic
+
+![](.\images\lab5_schematic.jpg)
+Figure 2: Circuit schematic of 
+
+Figure 2 shows ###############
+
+### Results and Discussion
+ 
+![](.\images\.png)
+Figure 2: 
+
+![](.\images\.png)
+Figure 3: 
+
+![](.\images\.png)
+Figure 4: 
+
+Discussion placeholder
+
+
+## Conclusion
+This lab deserves ########### grade
+
+There are also the following known issues:
+1. ###########
+
+I spent about ####### hours working on this lab. 
+
+## AI Prototype Summary
+Prompt: 
+
+Placeholder
