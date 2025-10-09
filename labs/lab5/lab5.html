@@ -192,13 +192,14 @@ Figure 1 shows ###############
 </figure>
 </div>
 <p>When the motor is powered by a 10VDC power supply we measure an angular velocity of 2.40 Rev/s in the CCW direction, which is close to the ~2 Rev/s specified for this motor.</p>
+<p>We see that the computed angular velocity of 2.40 Rev/s is right because the given pulses per rotation is 408. If count = 197, PPR = 408, and the sampling period is 200 ms, then 197 pulse / 408 pulse/rev * 5 Hz = 2.41 rev/s. By inspection, the motor is rotating CCW.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src=".\images\counter_fluctuation.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 3: 197 +- 1 count fluctuation in the encoder pulse counter.</figcaption>
 </figure>
 </div>
-<p>There is +-0.01 Rev/s error likely due to the encoder not always beginning at the same position at the beginning of every 200 ms scan cycle, which causes a fluctuation in the pulse counter of 1 as you can see in Figure 3.</p>
+<p>There is +-0.01 Rev/s error likely due to the encoder not always beginning at the same position at the beginning of every 200 ms scan cycle, which causes a fluctuation in the pulse counter of 1 as you can see in Figure 3.qua</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src=".\images\operation_reversed.png" class="img-fluid figure-img"></p>
@@ -206,7 +207,6 @@ Figure 1 shows ###############
 </figure>
 </div>
 <p>When the motor polarity is reversed, we see the direction change to CW and the same angular velocity of 2.40 +- 0.01 Rev/s.</p>
-<p>We expect the motor to operate at 2.40 Rev/s because</p>
 </section>
 </section>
 <section id="conclusion" class="level2">

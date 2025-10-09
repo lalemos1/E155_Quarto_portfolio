@@ -74,7 +74,7 @@
     "href": "blog.html",
     "title": "E155 Blog",
     "section": "",
-    "text": "Hello Quarto\n\n\n\n\n\nWelcome to my Quarto portfolio\n\n\n\n\n\nAug 23, 2024\n\n\nJosh Brake\n\n\n\n\n\n\nNo matching items"
+    "text": "Hello Quarto\n\n\n\n\n\nWelcome to my Quarto portfolio\n\n\n\n\n\nAug 23, 2025\n\n\nLucas Lemos\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "labs/lab1/lab1.html#design-and-testing-methodology",
@@ -144,7 +144,7 @@
     "href": "labs/lab5/lab5.html#technical-documentation",
     "title": "Lab 5: Quadrature Encoder and Interrupts",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in my E155 GitHub repository under “lab5_motor.”\n\n\nSchematic\n\n\n\nFigure 1: Circuit schematic of the motor and encoder connected to the microcontroller pins.\n\n\n\n\nResults and Discussion\n\n\n\nFigure 2: Motor velocity and direction at 10V.\n\n\nWhen the motor is powered by a 10VDC power supply we measure an angular velocity of 2.40 Rev/s in the CCW direction, which is close to the ~2 Rev/s specified for this motor.\n\n\n\nFigure 3: 197 +- 1 count fluctuation in the encoder pulse counter.\n\n\nThere is +-0.01 Rev/s error likely due to the encoder not always beginning at the same position at the beginning of every 200 ms scan cycle, which causes a fluctuation in the pulse counter of 1 as you can see in Figure 3.\n\n\n\nFigure 4: Motor velocity and direction with reversed polarity.\n\n\nWhen the motor polarity is reversed, we see the direction change to CW and the same angular velocity of 2.40 +- 0.01 Rev/s.\nWe expect the motor to operate at 2.40 Rev/s because"
+    "text": "Technical Documentation\nThe source code for the project can be found in my E155 GitHub repository under “lab5_motor.”\n\n\nSchematic\n\n\n\nFigure 1: Circuit schematic of the motor and encoder connected to the microcontroller pins.\n\n\n\n\nResults and Discussion\n\n\n\nFigure 2: Motor velocity and direction at 10V.\n\n\nWhen the motor is powered by a 10VDC power supply we measure an angular velocity of 2.40 Rev/s in the CCW direction, which is close to the ~2 Rev/s specified for this motor.\nWe see that the computed angular velocity of 2.40 Rev/s is right because the given pulses per rotation is 408. If count = 197, PPR = 408, and the sampling period is 200 ms, then 197 pulse / 408 pulse/rev * 5 Hz = 2.41 rev/s. By inspection, the motor is rotating CCW.\n\n\n\nFigure 3: 197 +- 1 count fluctuation in the encoder pulse counter.\n\n\nThere is +-0.01 Rev/s error likely due to the encoder not always beginning at the same position at the beginning of every 200 ms scan cycle, which causes a fluctuation in the pulse counter of 1 as you can see in Figure 3.qua\n\n\n\nFigure 4: Motor velocity and direction with reversed polarity.\n\n\nWhen the motor polarity is reversed, we see the direction change to CW and the same angular velocity of 2.40 +- 0.01 Rev/s."
   },
   {
     "objectID": "labs/lab5/lab5.html#conclusion",
