@@ -2,30 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lalemos1.github.io/E155_Quarto_portfolio/resources.html</loc>
-    <lastmod>2025-09-10T21:46:40.567Z</lastmod>
+    <lastmod>2025-09-03T22:32:08.172Z</lastmod>
   </url>
   <url>
     <loc>https://lalemos1.github.io/E155_Quarto_portfolio/labs.html</loc>
-    <lastmod>2025-09-10T21:46:40.551Z</lastmod>
+    <lastmod>2025-10-06T21:59:25.910Z</lastmod>
   </url>
   <url>
-    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/labs/lab1/lab1.html</loc>
-    <lastmod>2025-09-10T21:46:40.566Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/blog.html</loc>
-    <lastmod>2025-09-10T21:46:40.550Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/index.html</loc>
-    <lastmod>2025-09-10T21:46:40.551Z</lastmod>
+    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/labs/lab4/lab4.html</loc>
+    <lastmod>2025-10-06T23:38:56.269Z</lastmod>
   </url>
   <url>
     <loc>https://lalemos1.github.io/E155_Quarto_portfolio/labs/lab2/lab2.html</loc>
-    <lastmod>2025-09-10T23:33:24.034Z</lastmod>
+    <lastmod>2025-10-06T21:59:45.454Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/index.html</loc>
+    <lastmod>2025-09-05T03:22:55.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/blog.html</loc>
+    <lastmod>2025-09-03T20:43:21.574Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/labs/lab1/lab1.html</loc>
+    <lastmod>2025-09-05T03:35:30.912Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/labs/lab3/lab3.html</loc>
+    <lastmod>2025-10-06T23:35:34.411Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lalemos1.github.io/E155_Quarto_portfolio/labs/lab5/lab5.html</loc>
+    <lastmod>2025-10-09T00:09:28.952Z</lastmod>
   </url>
   <url>
     <loc>https://lalemos1.github.io/E155_Quarto_portfolio/posts/first-post.html</loc>
-    <lastmod>2025-09-10T21:46:40.567Z</lastmod>
+    <lastmod>2025-09-03T22:25:27.457Z</lastmod>
   </url>
 </urlset>
