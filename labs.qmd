@@ -6,5 +6,6 @@ listing:
     - lab2.qmd
     - lab3.qmd
     - lab4.qmd
+    - lab5.qmd
   type: default
 ---

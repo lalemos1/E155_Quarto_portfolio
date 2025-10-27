@@ -1,52 +1,57 @@
 ---
-title: "Lab 5: placeholder"
-description: "Placeholder."
+title: "Lab 5: Quadrature Encoder and Interrupts"
+description: "Embedded C measures the angular velocity and direction of a DC motor using a quadrature encoder and interrupts."
 image: .\images\lab5_physical_circuit.jpg
 ---
 ![](.\images\lab5_physical_circuit.jpg)
 
 ## Design and Testing Methodology
-#####################
+The motor was powered by a 10V benchtop power supply and the encoder pulses were sent to two pins on the microcontroller.
+The microcontroller interrupt handler iterates a counter for every encoder pulse and every 200 ms measures the pulse counters and averages their result.
+The interrupt handler also checks which of the two encoder pulses are leading and determines direction from this.
 
 ## Technical Documentation
-The source code for the project can be found in my [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[placeholder](https://github.com/lalemos1/E155-uP-labs/tree/main/lab5_placeholder).”
+The source code for the project can be found in my [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab5_motor](https://github.com/lalemos1/E155-uP-labs/tree/main/lab5_motor).”
 
+<!--
 ### Interrupt Flowchart
 ![](.\images\lab5_flowchart.jpg)
 Figure 1: Flow chart of 
 
 Figure 1 shows ###############
-
+-->
 ### Schematic
 
-![](.\images\lab5_schematic.jpg)
-Figure 2: Circuit schematic of 
+![Figure 1: Circuit schematic of the motor and encoder connected to the microcontroller pins.](.\images\lab5_schematic.jpg)
 
-Figure 2 shows ###############
 
 ### Results and Discussion
  
-![](.\images\.png)
-Figure 2: 
+![Figure 2: Motor velocity and direction at 10V.](.\images\operation_normal.png)
 
-![](.\images\.png)
-Figure 3: 
+When the motor is powered by a 10VDC power supply we measure an angular velocity of 2.40 Rev/s in the CCW direction, which is close to the ~2 Rev/s specified for this motor.
 
-![](.\images\.png)
-Figure 4: 
+We see that the computed angular velocity of 2.40 Rev/s is right because the given pulses per rotation is 408. 
+If count = 197, PPR = 408, and the sampling period is 200 ms, then 197 pulse / 408 pulse/rev * 5 Hz = 2.41 rev/s.
+By inspection, the motor is rotating CCW.
 
-Discussion placeholder
+![Figure 3: 197 +- 1 count fluctuation in the encoder pulse counter.](.\images\counter_fluctuation.png)
+
+There is +-0.01 Rev/s error likely due to the encoder not always beginning at the same position at the beginning of every 200 ms scan cycle, which causes a fluctuation in the pulse counter of 1 as you can see in Figure 3.qua
+
+![Figure 4: Motor velocity and direction with reversed polarity.](.\images\operation_reversed.png)
+
+When the motor polarity is reversed, we see the direction change to CW and the same angular velocity of 2.40 +- 0.01 Rev/s.
 
 
 ## Conclusion
-This lab deserves ########### grade
+This lab deserves proficiency because I didn't enable the negative pulse edges, I didn't ensure the MCU catches all pulses at high speeds, I didn't compare with manual polling at high speeds, I didn't compare interrupt and polling at high speeds, and I didn't include an interrupt flowchart.
 
-There are also the following known issues:
-1. ###########
-
-I spent about ####### hours working on this lab. 
+I spent about 15 hours working on this lab. 
 
 ## AI Prototype Summary
-Prompt: 
+Prompt: Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?
 
-Placeholder
+I was underwhelmed with the AI's response. It was useful insofar as it righly noted that both pins it suggested (PA0 and PA1) are on GPIOA. It also pointed out that those pins map to the TIM2 encoder interface for future expansion/modification if desired. I also appreciated that it demonstrated for me how to use the HAL, which I'm still not familiar with. It also didn't account for which pins I actually have access to, although I couldn't have expected this result because I didn't give the LLM this context.
+
+Otherwise, it failed to mention anything about the logic level of those pins. In the code it generated it didn't configure a timer for sampling the encoder counts. I'm also suspicious of its encoder counter implementation; for some reason it subtracts from the count when there's a skip? I think my setup was generally superior, other than the LLM's use of the HAL. I don't think it worked too well as a sounding board.
