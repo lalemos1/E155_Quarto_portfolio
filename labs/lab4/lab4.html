@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="The bare metal C implementation and circuit for playing the song Fur Elise from a microcontroller using a general purpose timer peripheral.">
+<meta name="description" content="Embedded C implementation and audio circuit for playing the song Fur Elise from a microcontroller using a general purpose timer peripheral.">
 
 <title>Lab 4: PWM Fur Elise on a Microcontroller – E155 Portfolio</title>
 <style>
@@ -97,14 +97,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../resources.html"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -142,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    The bare metal C implementation and circuit for playing the song Fur Elise from a microcontroller using a general purpose timer peripheral.
+    Embedded C implementation and audio circuit for playing the song Fur Elise from a microcontroller using a general purpose timer peripheral.
   </div>
 </div>
 
@@ -168,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
-<p>The source code for the project can be found in my <a href="https://github.com/lalemos1/E155-uP-labs">E155 GitHub repository</a> under “<a href="https://github.com/lalemos1/E155-uP-labs/tree/main/lab4_audio/mcu">lab4_audio</a>.”</p>
+<p>The source code for the project can be found in my <a href="https://github.com/lalemos1/E155-uP-labs">E155 GitHub repository</a> under “<a href="https://github.com/lalemos1/E155-uP-labs/tree/main/lab4_audio">lab4_audio</a>.”</p>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
 <p><img src=".\images\lab4_schematic.jpg" class="img-fluid"> Figure 1: Circuit schematic of</p>
@@ -179,13 +171,12 @@ ul.task-list li input[type="checkbox"] {
 <p><img src=".\images.png" class="img-fluid"> Figure 2:</p>
 <p><img src=".\images.png" class="img-fluid"> Figure 3:</p>
 <p><img src=".\images.png" class="img-fluid"> Figure 4:</p>
-<p>The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected.</p>
+<p>results</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This lab nearly meets excellence, although it is missing the criterion where if two buttons are pressed and one is released, the second button press is registered.</p>
-<p>There are also the following known issues: 1. Reset still trips the debounce high for some reason 2. Needs to be manually reset upon startup 3. Can’t press zero twice for some reason 4. The debounce_low fail criterion doesn’t actually really work, although in hardware testing this was revealed to be unnecessary</p>
+<p>This lab meets the proficiency specification since it plays the provided Fur Elise starter code file. I did not create a custom song nor did I provide maximum and minimum frequency and duration calculations.</p>
 <p>I spent about 15 hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">

@@ -4,105 +4,35 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "Lab 1: Seven segment display\n\n\n\n\n\nThe SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 2: Time Multiplexing Two Displays\n\n\n\n\n\nThe SystemVerilog implementation and simulation of a time multiplexed seven segment decoder which outputs to a 2-digit display.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 3: Keypad Scanner with Two Digit Display\n\n\n\n\n\nThe SystemVerilog implementation and simulation of a keypad scanner which reads user inputs from a 4x4 matrix keypad and displays them to a 2-digit display.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 4: PWM Fur Elise on a Microcontroller\n\n\n\n\n\nThe bare metal C implementation and circuit for playing the song Fur Elise from a microcontroller using a general purpose timer peripheral.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 5: Quadrature Encoder and Interrupts\n\n\n\n\n\nEmbedded C measures the angular velocity and direction of a DC motor using a quadrature encoder and interrupts.\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Lab 1: Seven segment display\n\n\n\n\n\nThe SystemVerilog implementation and simulation of a hexidecimal seven segment display on an FPGA.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 2: Time Multiplexing Two Displays\n\n\n\n\n\nThe SystemVerilog implementation and simulation of a time multiplexed seven segment decoder which outputs to a 2-digit display.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 3: Keypad Scanner with Two Digit Display\n\n\n\n\n\nThe SystemVerilog implementation and simulation of a keypad scanner which reads user inputs from a 4x4 matrix keypad and displays them to a 2-digit display.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 4: PWM Fur Elise on a Microcontroller\n\n\n\n\n\nEmbedded C implementation and audio circuit for playing the song Fur Elise from a microcontroller using a general purpose timer peripheral.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 5: Quadrature Encoder and Interrupts\n\n\n\n\n\nEmbedded C measures the angular velocity and direction of a DC motor using a quadrature encoder and interrupts.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLab 6: SPI Temperature Sensor IoT\n\n\n\n\n\nEmbedded C implements polling SPI transaction with a DS1722 temperature sensor. The result is read from an HTML webpage hosted on an ESP8266.\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "labs/lab4/lab4.html#design-and-testing-methodology",
-    "href": "labs/lab4/lab4.html#design-and-testing-methodology",
-    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "objectID": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "href": "labs/lab5/lab5.html#design-and-testing-methodology",
+    "title": "Lab 5: Quadrature Encoder and Interrupts",
     "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology"
+    "text": "Design and Testing Methodology\nThe motor was powered by a 10V benchtop power supply and the encoder pulses were sent to two pins on the microcontroller. The microcontroller interrupt handler iterates a counter for every encoder pulse and every 200 ms measures the pulse counters and averages their result. The interrupt handler also checks which of the two encoder pulses are leading and determines direction from this."
   },
   {
-    "objectID": "labs/lab4/lab4.html#technical-documentation",
-    "href": "labs/lab4/lab4.html#technical-documentation",
-    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "objectID": "labs/lab5/lab5.html#technical-documentation",
+    "href": "labs/lab5/lab5.html#technical-documentation",
+    "title": "Lab 5: Quadrature Encoder and Interrupts",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in my E155 GitHub repository under “lab4_audio.”\n\nSchematic\n Figure 1: Circuit schematic of\nFigure 1 shows ###############\n\n\nResults and Discussion\n Figure 2:\n Figure 3:\n Figure 4:\nThe keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected."
+    "text": "Technical Documentation\nThe source code for the project can be found in my E155 GitHub repository under “lab5_motor.”\n\n\nSchematic\n\n\n\nFigure 1: Circuit schematic of the motor and encoder connected to the microcontroller pins.\n\n\n\n\nResults and Discussion\n\n\n\nFigure 2: Motor velocity and direction at 10V.\n\n\nWhen the motor is powered by a 10VDC power supply we measure an angular velocity of 2.40 Rev/s in the CCW direction, which is close to the ~2 Rev/s specified for this motor.\nWe see that the computed angular velocity of 2.40 Rev/s is right because the given pulses per rotation is 408. If count = 197, PPR = 408, and the sampling period is 200 ms, then 197 pulse / 408 pulse/rev * 5 Hz = 2.41 rev/s. By inspection, the motor is rotating CCW.\n\n\n\nFigure 3: 197 +- 1 count fluctuation in the encoder pulse counter.\n\n\nThere is +-0.01 Rev/s error likely due to the encoder not always beginning at the same position at the beginning of every 200 ms scan cycle, which causes a fluctuation in the pulse counter of 1 as you can see in Figure 3.qua\n\n\n\nFigure 4: Motor velocity and direction with reversed polarity.\n\n\nWhen the motor polarity is reversed, we see the direction change to CW and the same angular velocity of 2.40 +- 0.01 Rev/s."
   },
   {
-    "objectID": "labs/lab4/lab4.html#conclusion",
-    "href": "labs/lab4/lab4.html#conclusion",
-    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "objectID": "labs/lab5/lab5.html#conclusion",
+    "href": "labs/lab5/lab5.html#conclusion",
+    "title": "Lab 5: Quadrature Encoder and Interrupts",
     "section": "Conclusion",
-    "text": "Conclusion\nThis lab nearly meets excellence, although it is missing the criterion where if two buttons are pressed and one is released, the second button press is registered.\nThere are also the following known issues: 1. Reset still trips the debounce high for some reason 2. Needs to be manually reset upon startup 3. Can’t press zero twice for some reason 4. The debounce_low fail criterion doesn’t actually really work, although in hardware testing this was revealed to be unnecessary\nI spent about 15 hours working on this lab."
+    "text": "Conclusion\nThis lab deserves proficiency because I didn’t enable the negative pulse edges, I didn’t ensure the MCU catches all pulses at high speeds, I didn’t compare with manual polling at high speeds, I didn’t compare interrupt and polling at high speeds, and I didn’t include an interrupt flowchart.\nI spent about 15 hours working on this lab."
   },
   {
-    "objectID": "labs/lab4/lab4.html#ai-prototype-summary",
-    "href": "labs/lab4/lab4.html#ai-prototype-summary",
-    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "objectID": "labs/lab5/lab5.html#ai-prototype-summary",
+    "href": "labs/lab5/lab5.html#ai-prototype-summary",
+    "title": "Lab 5: Quadrature Encoder and Interrupts",
     "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary\nPrompt: What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? What’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?\nI was astounded by how mediocre the first attempt at prompting the LLM was and how useful the second attempt was when I attached the reference manual. The response blazingly faster (the first response took a whole 2 minutes to think; the second response was mere seconds). In addition, the output was of a much higher quality. The first response gave me false information, such as the existence of a general purpose “TIM17”, and garbled register writes for things like configuring the GPIO (such as: GPIOA-&gt;OSPEEDR = (GPIOA-&gt;OSPEEDR & ~(3U &lt;&lt; (5*2))) | (1U &lt;&lt; (5*2)); // medium). The second response gave me a detailed set of options between using the PWM mode or the output capture modes. The formulae were about comparable. The LLM was able to summarize information in seconds which took me hours to derive from the confusing layout and wording of the reference manual. It is amazingly helpful for searching the reference manual.\nThe second response was still slightly deficient in a few ways. Notably, it said nothing about why we were recommended to use TIM15/16, which was its lack of connection to any other peripherals. It also failed to recommend the far simpler approach of using software to write to a GPIO based on a timer overflow event rather than directly outputting the PWM. While both approaches work, it would’ve been nice if the LLM would’ve suggested the simpler approach for those short on time (like myself, as I always am in MicroP’s)."
-  },
-  {
-    "objectID": "labs/lab2/lab2.html#design-and-testing-methodology",
-    "href": "labs/lab2/lab2.html#design-and-testing-methodology",
-    "title": "Lab 2: Time Multiplexing Two Displays",
-    "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\nOne seven segment display decoder was time multiplexed to two seven segment displays. Time multiplexing is where one expensive component is used for multiple different tasks at different times, synchronized to a clock. The time multiplexing was implemented by giving the decoder the output of two 4-throw switches at different times as selected by a divided clock and a multiplexer. Additionally, which digit of the 2-digit display was enabled according to the divided clock. A nominal clock frequency of 80 Hz was chosen to eliminate visible flicker without being so high as to bleed the two digits together.\nA five LED counter counts the sum of both 4-throw switches to ensure proper switch input to the time multiplexer."
-  },
-  {
-    "objectID": "labs/lab2/lab2.html#technical-documentation",
-    "href": "labs/lab2/lab2.html#technical-documentation",
-    "title": "Lab 2: Time Multiplexing Two Displays",
-    "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in the E155 GitHub repository under “lab2_ll_two_displays.”\n\nBlock Diagram\n Figure 1: Block diagram of SystemVerilog modules.\nThe block diagram in Figure 1 shows the lab2_ll_two_displays top module, and the led_cnt_adder, switch_mux, seven_seg_display, clk_divider, and HSOSC submodules.\n\n\nSchematic\n Figure 2: Circuit schematic of the 2-digit display and LED counter circuit.\nFigure 2 shows the two 4-throw switches, reset button, 2-digit seven segment display, switch count LEDs, and two PNP transistors for sourcing current to the display. The display and counter LEDs are nominally current limited to 10mA using a 330Ω resister, while the PNP base current is nominally limited to 0.7mA using a 4.7kΩ resister.\n\n\nResults and Discussion\n Figure 3: The lab2_ll_two_displays top module functioning in simulation.\n Figure 4: The clock divier module properly dividing the clock according to the set divisor.\n Figure 5: The 2:1 4-bit switch mux demonstrating proper channel selection.\n Figure 6: The 4-bit LED count adder demonstrating proper addition.\nThe time multiplexed display functions in simulation. Some testbenches were fully automatic, others required visual verification since I ran out of time to fully automate them. The lab2_ll_sim doesn’t show the negated, divided clock because it was a last-minute bug-fix, but the negated clock does function in hardware."
-  },
-  {
-    "objectID": "labs/lab2/lab2.html#conclusion",
-    "href": "labs/lab2/lab2.html#conclusion",
-    "title": "Lab 2: Time Multiplexing Two Displays",
-    "section": "Conclusion",
-    "text": "Conclusion\nI believe this design and implementation meets the criteria for proficiency, although fails to meet certain excellence metrics. I would have fixed the last few bugs if given more time. The following bugs still present are:\n\nclk_div is (I think) 40 Hz, not 80Hz, which causes flickering.\nswitch2’s pinout to the FPGA is backwards, and the switch activates in the “off” position.\nAll of the LEDs are really dim.\nThe display changes in brightness depending on how many segments are activated.\nHuge risk of resisters shorting on the current breadboard–I need a bigger breadboard.\n\nI spent 23 hours working on this lab. The greatest time sink was redesigning my clock divider from lab 1 and writing automatic testbenches for each submodule."
-  },
-  {
-    "objectID": "labs/lab2/lab2.html#ai-prototype-summary",
-    "href": "labs/lab2/lab2.html#ai-prototype-summary",
-    "title": "Lab 2: Time Multiplexing Two Displays",
-    "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary\nThe two prompts were as follows: “Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.”\nand\n“Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits. Use the seven segment decoder and oscillator (inside lab1_ll) provided in the attached files.”\nThe quality of the AI output was higher than I expected, but still less than ideal. In the response to the first prompt, the AI generated a digitally controlled oscillator for dividing the clock which triggered on both the positive and negative edges of the clock, which is risky according to synchronous design. It also implemented selection using if/else in an always_comb block, which would’ve been better represented as a ternary statement to better use the multiplexer idiom. Lastly, it is not modularized and so would be difficul to test, although this could easily be fixed by prompting the AI further. Despite these flaws, the first prompt produced a fairly high quality result in seconds, and synthesized first try.\nThe response to the second prompt, which included my code from lab 1, was similarly surprisingly good despite some notable flaws. Again, the HDL code synthesized first try. The second prompt did not actually include the counter and HSOSC I provided it, and instead wrote its own inferior digitally controlled oscillator which again overly relies on if/else statements.\nThere was nothing about the code of these outputs which actually surprised me, and it ended up creating seemingly usable if slightly amateur code. The quality could likely be improved with more expert prompting. This helps me to realize that if I am to incorporate an LLM into my workflow, I shouldn’t depend on its proposed solution sine it’s likely suboptimal. I first need a clear idea of exactly what hardware to implement and loosely how, and only depend on the AI to write what I already know how to write."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "E155 Portfolio",
-    "section": "",
-    "text": "Lucas Lemos is a senior undergraduate at Harvey Mudd College studying for a B.S. Engineering. He is a self-motivated engineer & student leader passionate about merging creative design and technical expertise. He has proficiency and interest in controls and electronics. Lucas has designed an embedded audio system and PCB for Motiv Electric Trucks, an analog instrumentation PCB for the HRL Labs Clinic Team, a QTP test rack for qualifying the reactor control system PCBAs for Radiant Nuclear, and is currently developing power electronics for the Exolambda Clinic team."
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "E155 Blog",
-    "section": "",
-    "text": "Hello Quarto\n\n\n\n\n\nWelcome to my Quarto portfolio\n\n\n\n\n\nAug 23, 2025\n\n\nLucas Lemos\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "labs/lab1/lab1.html#design-and-testing-methodology",
-    "href": "labs/lab1/lab1.html#design-and-testing-methodology",
-    "title": "Lab 1: Seven segment display",
-    "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\nA simple decoder was used to translate the input from a 4-throw switch into a hexadecimal output on a common-anode seven segment display.\nThe FPGA’s on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive SystemVerilog library was used to generate a clock signal at 48 MHz. A counter was then used to divide the signal down to 12 MHz, where the LED was driven according to the 25th bit to blink at 2.86 Hz."
-  },
-  {
-    "objectID": "labs/lab1/lab1.html#technical-documentation",
-    "href": "labs/lab1/lab1.html#technical-documentation",
-    "title": "Lab 1: Seven segment display",
-    "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in the E155 GitHub repository under “lab1-fpga-7-seg-display.”\n\nBlock Diagram\n Figure 1: LED and seven segment display SystemVerilog block diagram.\nThe block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.\n\n\nSchematic\n Figure 2: Seven segment display and LEDs circuit schematic.\nFigure 2 shows the system as arranged on the PCB (the LEDs) and the breadboard (7-segment-display). The seven segment display and each of the three onboard LEDs are current limited using a 1kΩ resister. Each segment of the display is controlled active-low by the FPGA on the PCB. Results and Discussion\n Figure 3: The lab1_ll top module functioning in simulation.\n Figure 4: Led0 blinking on after many clock ticks.\n Figure 5: The seven-seg-display module properly decoding according to its inputs.\nThe display functions in simulation. I did not write an automatic testbench; these simulation results were from manual forcing.\n Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz. The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6."
-  },
-  {
-    "objectID": "labs/lab1/lab1.html#conclusion",
-    "href": "labs/lab1/lab1.html#conclusion",
-    "title": "Lab 1: Seven segment display",
-    "section": "Conclusion",
-    "text": "Conclusion\nThe design was mostly successful, with some omissions mainly due to time constraints. I spent 20 hours working on this lab.\nI spent more time than I would have liked on the PCB due to missing parts, resoldering components which were misaligned, and fixing the LED solder pads which I had damaged. Radiant and its debugger were also frustrating to get working.\nDue to feeling rushed, I don’t believe that I ensured the MCU is fully functional, since when I went through the tutorial, the LEDs were behaving oddly. I did not fully diagnose this bug.\nIn the future, I will block more time in advance to finish more of future labs sooner in the week."
-  },
-  {
-    "objectID": "labs/lab1/lab1.html#ai-prototype-summary",
-    "href": "labs/lab1/lab1.html#ai-prototype-summary",
-    "title": "Lab 1: Seven segment display",
-    "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary\nThis was not attempted."
+    "text": "AI Prototype Summary\nPrompt: Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?\nI was underwhelmed with the AI’s response. It was useful insofar as it righly noted that both pins it suggested (PA0 and PA1) are on GPIOA. It also pointed out that those pins map to the TIM2 encoder interface for future expansion/modification if desired. I also appreciated that it demonstrated for me how to use the HAL, which I’m still not familiar with. It also didn’t account for which pins I actually have access to, although I couldn’t have expected this result because I didn’t give the LLM this context.\nOtherwise, it failed to mention anything about the logic level of those pins. In the code it generated it didn’t configure a timer for sampling the encoder counts. I’m also suspicious of its encoder counter implementation; for some reason it subtracts from the count when there’s a skip? I think my setup was generally superior, other than the LLM’s use of the HAL. I don’t think it worked too well as a sounding board."
   },
   {
     "objectID": "labs/lab3/lab3.html#design-and-testing-methodology",
@@ -133,31 +63,129 @@
     "text": "AI Prototype Summary\nThe monolithic prompt was certainly much more brief and was lacking certain necessary functions such as a debouncer. Both attempts synthesized immediately, although the decomposed prompt interestingly provided two approaches to solving the problem which halted synthesis until I commented out one of the options. Both modularized effectively, except the aforementioned missing functions.\nThere were all kinds of neat SystemVerilog tricks I didn’t know about, such as the $clog2() function which the number of bits needed to represent a number, or the ~| bitwise operator for reading whether any of the rows were true. I also especially like how the 7-seg decoder was laid out with a nice ASCII graphic of the 7 segments and using hex rather than binary for the case states. I also liked how the decomposed prompt separated the row + column combinations into a queryable table, which seemed like a logical way of decoding the result.\nBoth prompts were liable to create undriven connections and were definitely not usable without user-inputted debugging. I don’t like how both prompts read the row inputs in a non-one-hot manner, and the monolithic prompt didn’t even try decoding the input. The decomposed prompt did attempt this, but couldn’t have done it correctly without a specific keypad spec. I also did not like how the decomposed prompt handled the debouncer by simply waiting for a counter period, without actually checking if the input was steady.\nIn the future, I’ll definitely try a decomposed approach, especially because it encourages me, the prompter, to be much more specific with my request and thereby improves the result. It also helps you as the designer to think about what exactly does your code need to implement when you go and write it yourself. Especially because I don’t like immediately copying code from LLMs, but rather using them as example code to build my design around so I can think of each line of code as I write it. I also find LLMs much more useful for debugging, which we didn’t handle here."
   },
   {
-    "objectID": "labs/lab5/lab5.html#design-and-testing-methodology",
-    "href": "labs/lab5/lab5.html#design-and-testing-methodology",
-    "title": "Lab 5: Quadrature Encoder and Interrupts",
+    "objectID": "labs/lab1/lab1.html#design-and-testing-methodology",
+    "href": "labs/lab1/lab1.html#design-and-testing-methodology",
+    "title": "Lab 1: Seven segment display",
     "section": "Design and Testing Methodology",
-    "text": "Design and Testing Methodology\nThe motor was powered by a 10V benchtop power supply and the encoder pulses were sent to two pins on the microcontroller. The microcontroller interrupt handler iterates a counter for every encoder pulse and every 200 ms measures the pulse counters and averages their result. The interrupt handler also checks which of the two encoder pulses are leading and determines direction from this."
+    "text": "Design and Testing Methodology\nA simple decoder was used to translate the input from a 4-throw switch into a hexadecimal output on a common-anode seven segment display.\nThe FPGA’s on-board high-speed oscillator (HSOSC) from the iCE40 UltraPlus primitive SystemVerilog library was used to generate a clock signal at 48 MHz. A counter was then used to divide the signal down to 12 MHz, where the LED was driven according to the 25th bit to blink at 2.86 Hz."
   },
   {
-    "objectID": "labs/lab5/lab5.html#technical-documentation",
-    "href": "labs/lab5/lab5.html#technical-documentation",
-    "title": "Lab 5: Quadrature Encoder and Interrupts",
+    "objectID": "labs/lab1/lab1.html#technical-documentation",
+    "href": "labs/lab1/lab1.html#technical-documentation",
+    "title": "Lab 1: Seven segment display",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in my E155 GitHub repository under “lab5_motor.”\n\n\nSchematic\n\n\n\nFigure 1: Circuit schematic of the motor and encoder connected to the microcontroller pins.\n\n\n\n\nResults and Discussion\n\n\n\nFigure 2: Motor velocity and direction at 10V.\n\n\nWhen the motor is powered by a 10VDC power supply we measure an angular velocity of 2.40 Rev/s in the CCW direction, which is close to the ~2 Rev/s specified for this motor.\nWe see that the computed angular velocity of 2.40 Rev/s is right because the given pulses per rotation is 408. If count = 197, PPR = 408, and the sampling period is 200 ms, then 197 pulse / 408 pulse/rev * 5 Hz = 2.41 rev/s. By inspection, the motor is rotating CCW.\n\n\n\nFigure 3: 197 +- 1 count fluctuation in the encoder pulse counter.\n\n\nThere is +-0.01 Rev/s error likely due to the encoder not always beginning at the same position at the beginning of every 200 ms scan cycle, which causes a fluctuation in the pulse counter of 1 as you can see in Figure 3.qua\n\n\n\nFigure 4: Motor velocity and direction with reversed polarity.\n\n\nWhen the motor polarity is reversed, we see the direction change to CW and the same angular velocity of 2.40 +- 0.01 Rev/s."
+    "text": "Technical Documentation\nThe source code for the project can be found in the E155 GitHub repository under “lab1-fpga-7-seg-display.”\n\nBlock Diagram\n Figure 1: LED and seven segment display SystemVerilog block diagram.\nThe block diagram in Figure 1 demonstrates the architecture of the entire seven segment display and LED system. The top level module, lab1_ll, includes the high speed oscillator (HSOSC), counter, LED combinational logic, and the submodule for the seven_seg_display which functions as a decoder.\n\n\nSchematic\n Figure 2: Seven segment display and LEDs circuit schematic.\nFigure 2 shows the system as arranged on the PCB (the LEDs) and the breadboard (7-segment-display). The seven segment display and each of the three onboard LEDs are current limited using a 1kΩ resister. Each segment of the display is controlled active-low by the FPGA on the PCB. Results and Discussion\n Figure 3: The lab1_ll top module functioning in simulation.\n Figure 4: Led0 blinking on after many clock ticks.\n Figure 5: The seven-seg-display module properly decoding according to its inputs.\nThe display functions in simulation. I did not write an automatic testbench; these simulation results were from manual forcing.\n Figure 6: Oscilloscope trace of the blinking LED at 2.86 Hz. The design met most of the design specifications, except that the LED blinks at 2.86 Hz, not 2.4 Hz. The other two LEDs properly turn on and off according to the input of SW6."
   },
   {
-    "objectID": "labs/lab5/lab5.html#conclusion",
-    "href": "labs/lab5/lab5.html#conclusion",
-    "title": "Lab 5: Quadrature Encoder and Interrupts",
+    "objectID": "labs/lab1/lab1.html#conclusion",
+    "href": "labs/lab1/lab1.html#conclusion",
+    "title": "Lab 1: Seven segment display",
     "section": "Conclusion",
-    "text": "Conclusion\nThis lab deserves proficiency because I didn’t enable the negative pulse edges, I didn’t ensure the MCU catches all pulses at high speeds, I didn’t compare with manual polling at high speeds, I didn’t compare interrupt and polling at high speeds, and I didn’t include an interrupt flowchart.\nI spent about 15 hours working on this lab."
+    "text": "Conclusion\nThe design was mostly successful, with some omissions mainly due to time constraints. I spent 20 hours working on this lab.\nI spent more time than I would have liked on the PCB due to missing parts, resoldering components which were misaligned, and fixing the LED solder pads which I had damaged. Radiant and its debugger were also frustrating to get working.\nDue to feeling rushed, I don’t believe that I ensured the MCU is fully functional, since when I went through the tutorial, the LEDs were behaving oddly. I did not fully diagnose this bug.\nIn the future, I will block more time in advance to finish more of future labs sooner in the week."
   },
   {
-    "objectID": "labs/lab5/lab5.html#ai-prototype-summary",
-    "href": "labs/lab5/lab5.html#ai-prototype-summary",
-    "title": "Lab 5: Quadrature Encoder and Interrupts",
+    "objectID": "labs/lab1/lab1.html#ai-prototype-summary",
+    "href": "labs/lab1/lab1.html#ai-prototype-summary",
+    "title": "Lab 1: Seven segment display",
     "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary\nPrompt: Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?\nI was underwhelmed with the AI’s response. It was useful insofar as it righly noted that both pins it suggested (PA0 and PA1) are on GPIOA. It also pointed out that those pins map to the TIM2 encoder interface for future expansion/modification if desired. I also appreciated that it demonstrated for me how to use the HAL, which I’m still not familiar with. It also didn’t account for which pins I actually have access to, although I couldn’t have expected this result because I didn’t give the LLM this context.\nOtherwise, it failed to mention anything about the logic level of those pins. In the code it generated it didn’t configure a timer for sampling the encoder counts. I’m also suspicious of its encoder counter implementation; for some reason it subtracts from the count when there’s a skip? I think my setup was generally superior, other than the LLM’s use of the HAL. I don’t think it worked too well as a sounding board."
+    "text": "AI Prototype Summary\nThis was not attempted."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "E155 Blog",
+    "section": "",
+    "text": "Hello Quarto\n\n\n\n\n\nWelcome to my Quarto portfolio\n\n\n\n\n\nAug 23, 2025\n\n\nLucas Lemos\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "E155 Portfolio",
+    "section": "",
+    "text": "Lucas Lemos is a senior undergraduate at Harvey Mudd College studying for a B.S. Engineering. He is a self-motivated engineer & student leader passionate about merging creative design and technical expertise. He has proficiency and interest in controls and electronics. Lucas has designed an embedded audio system and PCB for Motiv Electric Trucks, an analog instrumentation PCB for the HRL Labs Clinic Team, a QTP test rack for qualifying the reactor control system PCBAs for Radiant Nuclear, and is currently developing power electronics for the Exolambda Clinic team."
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#design-and-testing-methodology",
+    "href": "labs/lab2/lab2.html#design-and-testing-methodology",
+    "title": "Lab 2: Time Multiplexing Two Displays",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nOne seven segment display decoder was time multiplexed to two seven segment displays. Time multiplexing is where one expensive component is used for multiple different tasks at different times, synchronized to a clock. The time multiplexing was implemented by giving the decoder the output of two 4-throw switches at different times as selected by a divided clock and a multiplexer. Additionally, which digit of the 2-digit display was enabled according to the divided clock. A nominal clock frequency of 80 Hz was chosen to eliminate visible flicker without being so high as to bleed the two digits together.\nA five LED counter counts the sum of both 4-throw switches to ensure proper switch input to the time multiplexer.\nThe current limiting resistors were sized to 330 ohms. According to the iCE40-UltraPlus-Family-Data-Sheet, Table 4.17 “sysI/O Single-Ended DC Electrical Characteristics,” when the FPGA is supplied with 3.3VDC the I/O pins can output a maximum of 8 mA. However, I measured that despite supplying my FPGA with 3.3V, the I/O pins could only output up to 2.2V. Therefore, using R &gt;= V / I, 2.2V / 8 mA &gt;= 275 ohms &lt; 330 ohms."
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#technical-documentation",
+    "href": "labs/lab2/lab2.html#technical-documentation",
+    "title": "Lab 2: Time Multiplexing Two Displays",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the E155 GitHub repository under “lab2_ll_two_displays.”\n\nBlock Diagram\n Figure 1: Block diagram of SystemVerilog modules.\nThe block diagram in Figure 1 shows the lab2_ll_two_displays top module, and the led_cnt_adder, switch_mux, seven_seg_display, clk_divider, and HSOSC submodules.\n\n\nSchematic\n Figure 2: Circuit schematic of the 2-digit display and LED counter circuit.\nFigure 2 shows the two 4-throw switches, reset button, 2-digit seven segment display, switch count LEDs, and two PNP transistors for sourcing current to the display. The display and counter LEDs are nominally current limited to 10mA using a 330Ω resister, while the PNP base current is nominally limited to 0.7mA using a 4.7kΩ resister.\n\n\nResults and Discussion\n Figure 3: The lab2_ll_two_displays top module functioning in simulation.\n Figure 4: The clock divier module properly dividing the clock according to the set divisor.\n Figure 5: The 2:1 4-bit switch mux demonstrating proper channel selection.\n Figure 6: The 4-bit LED count adder demonstrating proper addition.\nThe time multiplexed display functions in simulation. Some testbenches were fully automatic, others required visual verification since I ran out of time to fully automate them. The lab2_ll_sim doesn’t show the negated, divided clock because it was a last-minute bug-fix, but the negated clock does function in hardware."
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#conclusion",
+    "href": "labs/lab2/lab2.html#conclusion",
+    "title": "Lab 2: Time Multiplexing Two Displays",
+    "section": "Conclusion",
+    "text": "Conclusion\nI believe this design and implementation meets the criteria for proficiency, although fails to meet certain excellence metrics. I would have fixed the last few bugs if given more time. The following bugs still present are:\n\nclk_div is (I think) 40 Hz, not 80Hz, which causes flickering.\nswitch2’s pinout to the FPGA is backwards, and the switch activates in the “off” position.\nAll of the LEDs are really dim.\nThe display changes in brightness depending on how many segments are activated.\nHuge risk of resisters shorting on the current breadboard–I need a bigger breadboard.\n\nI spent 23 hours working on this lab. The greatest time sink was redesigning my clock divider from lab 1 and writing automatic testbenches for each submodule."
+  },
+  {
+    "objectID": "labs/lab2/lab2.html#ai-prototype-summary",
+    "href": "labs/lab2/lab2.html#ai-prototype-summary",
+    "title": "Lab 2: Time Multiplexing Two Displays",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nThe two prompts were as follows: “Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits.”\nand\n“Write SystemVerilog HDL to time multiplex a single seven segment decoder (that decodes from four bits to a common anode seven segment display) to decode two sets of input bits and drive two sets of seven output bits. Use the seven segment decoder and oscillator (inside lab1_ll) provided in the attached files.”\nThe quality of the AI output was higher than I expected, but still less than ideal. In the response to the first prompt, the AI generated a digitally controlled oscillator for dividing the clock which triggered on both the positive and negative edges of the clock, which is risky according to synchronous design. It also implemented selection using if/else in an always_comb block, which would’ve been better represented as a ternary statement to better use the multiplexer idiom. Lastly, it is not modularized and so would be difficul to test, although this could easily be fixed by prompting the AI further. Despite these flaws, the first prompt produced a fairly high quality result in seconds, and synthesized first try.\nThe response to the second prompt, which included my code from lab 1, was similarly surprisingly good despite some notable flaws. Again, the HDL code synthesized first try. The second prompt did not actually include the counter and HSOSC I provided it, and instead wrote its own inferior digitally controlled oscillator which again overly relies on if/else statements.\nThere was nothing about the code of these outputs which actually surprised me, and it ended up creating seemingly usable if slightly amateur code. The quality could likely be improved with more expert prompting. This helps me to realize that if I am to incorporate an LLM into my workflow, I shouldn’t depend on its proposed solution sine it’s likely suboptimal. I first need a clear idea of exactly what hardware to implement and loosely how, and only depend on the AI to write what I already know how to write."
+  },
+  {
+    "objectID": "labs/lab4/lab4.html#design-and-testing-methodology",
+    "href": "labs/lab4/lab4.html#design-and-testing-methodology",
+    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology"
+  },
+  {
+    "objectID": "labs/lab4/lab4.html#technical-documentation",
+    "href": "labs/lab4/lab4.html#technical-documentation",
+    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in my E155 GitHub repository under “lab4_audio.”\n\nSchematic\n Figure 1: Circuit schematic of\nFigure 1 shows ###############\n\n\nResults and Discussion\n Figure 2:\n Figure 3:\n Figure 4:\nresults"
+  },
+  {
+    "objectID": "labs/lab4/lab4.html#conclusion",
+    "href": "labs/lab4/lab4.html#conclusion",
+    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis lab meets the proficiency specification since it plays the provided Fur Elise starter code file. I did not create a custom song nor did I provide maximum and minimum frequency and duration calculations.\nI spent about 15 hours working on this lab."
+  },
+  {
+    "objectID": "labs/lab4/lab4.html#ai-prototype-summary",
+    "href": "labs/lab4/lab4.html#ai-prototype-summary",
+    "title": "Lab 4: PWM Fur Elise on a Microcontroller",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nPrompt: What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? What’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?\nI was astounded by how mediocre the first attempt at prompting the LLM was and how useful the second attempt was when I attached the reference manual. The response blazingly faster (the first response took a whole 2 minutes to think; the second response was mere seconds). In addition, the output was of a much higher quality. The first response gave me false information, such as the existence of a general purpose “TIM17”, and garbled register writes for things like configuring the GPIO (such as: GPIOA-&gt;OSPEEDR = (GPIOA-&gt;OSPEEDR & ~(3U &lt;&lt; (5*2))) | (1U &lt;&lt; (5*2)); // medium). The second response gave me a detailed set of options between using the PWM mode or the output capture modes. The formulae were about comparable. The LLM was able to summarize information in seconds which took me hours to derive from the confusing layout and wording of the reference manual. It is amazingly helpful for searching the reference manual.\nThe second response was still slightly deficient in a few ways. Notably, it said nothing about why we were recommended to use TIM15/16, which was its lack of connection to any other peripherals. It also failed to recommend the far simpler approach of using software to write to a GPIO based on a timer overflow event rather than directly outputting the PWM. While both approaches work, it would’ve been nice if the LLM would’ve suggested the simpler approach for those short on time (like myself, as I always am in MicroP’s)."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#design-and-testing-methodology",
+    "href": "labs/lab6/lab6.html#design-and-testing-methodology",
+    "title": "Lab 6: SPI Temperature Sensor IoT",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\nI wrote the SPI driver library by consulting the STM32L432KC reference manual and writing to the proper registers. Similarly, I wrote the DS1722 driver library by consulting the DS1722 data sheet and using my SPI driver. I had some help in writing my SPI transaction function by consulting Prof. Brake’s implementation.\nThe DS1722 is simply wired on a breadboard to the SPI1 pins on the NUCLEO development board. Similarly, the LED is controlled from a NUCLEO pin and current limited using a 330 ohm resistor.\nThe Internet of Things (IoT) webpage interface was implemented using the lab 6 starter code written by Prof. Brake."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#technical-documentation",
+    "href": "labs/lab6/lab6.html#technical-documentation",
+    "title": "Lab 6: SPI Temperature Sensor IoT",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in my E155 GitHub repository under “lab6_sensor_IoT.”\n\nSchematic\n\n\n\nFigure 1: Circuit schematic of the MCU connections to the DS1722 temperature sensor and LED.\n\n\n\n\nResults and Discussion\n\n\n\nFigure 2: HTML webpage displaying temperature read from the sensor. Also includes LED toggle.\n\n\nBoth the LED toggle and the temperature sensor result properly render on the webpage. The ESP8266 is rather unreliable and the WIFI connection to my laptop often fails. Toggling the LED button actually toggles the physical LED. Using a heat gun on the temperature sensor and updating the page does show reasonable temperature responses to heating and cooling."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#conclusion",
+    "href": "labs/lab6/lab6.html#conclusion",
+    "title": "Lab 6: SPI Temperature Sensor IoT",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis lab deserves proficiency because the temperature sensor is readable from the website and the LED is toggle-able. However, I didn’t accomplish the excellence goal of making the resolution configurable or include a sample SPI transaction.\nI spent about 16 hours working on this lab."
+  },
+  {
+    "objectID": "labs/lab6/lab6.html#ai-prototype-summary",
+    "href": "labs/lab6/lab6.html#ai-prototype-summary",
+    "title": "Lab 6: SPI Temperature Sensor IoT",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nI used Gemini Pro for both of my prompts.\nPrompt 1: I’m making a web portal to interface with a temperature sensor. Create a HTML page that looks good and is intuitive to show the temperature, control an LED, and change the precision of the readout.\nI’m quite happy with the result. The webpage it created is quite nice looking and seems to work with no issues. It used HTML, CSS, and javascript without me asking it to, which is slightly annoying since I don’t know those latter two languages if I’d like to debug the file. However, it contributes to a fairly nice page with a slick animation on the toggle button.\nPrompt 2: Write me a C function to carry out a SPI transaction to retrieve a temperature reading from a DS1722 sensor. Make use of CMSIS libraries for the STM32L432KC.\nWow, I’m very impressed with the result. It created a SPI transfer function, a DS1722 reading function, and a demonstration for how to use both with clear and readable code. It’s only missing an SPI initialization function, which is understandable since this wasn’t part of the prompt. I didn’t even need to provide the reference manual for the STM32L432KC or the datasheet for the DS1722 and it was able to locate the proper STM32 registers, CMSIS, and DS1722 registers."
   }
 ]

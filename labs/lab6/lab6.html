@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="The SystemVerilog implementation and simulation of a keypad scanner which reads user inputs from a 4x4 matrix keypad and displays them to a 2-digit display.">
+<meta name="description" content="Embedded C implements polling SPI transaction with a DS1722 temperature sensor. The result is read from an HTML webpage hosted on an ESP8266.">
 
-<title>Lab 3: Keypad Scanner with Two Digit Display – E155 Portfolio</title>
+<title>Lab 6: SPI Temperature Sensor IoT – E155 Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,8 +116,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#design-and-testing-methodology" id="toc-design-and-testing-methodology" class="nav-link active" data-scroll-target="#design-and-testing-methodology">Design and Testing Methodology</a></li>
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a>
   <ul class="collapse">
-  <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
-  <li><a href="#fsm-diagram" id="toc-fsm-diagram" class="nav-link" data-scroll-target="#fsm-diagram">FSM Diagram</a></li>
   <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
   <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
   </ul></li>
@@ -131,12 +129,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 3: Keypad Scanner with Two Digit Display</h1>
+<h1 class="title">Lab 6: SPI Temperature Sensor IoT</h1>
 </div>
 
 <div>
   <div class="description">
-    The SystemVerilog implementation and simulation of a keypad scanner which reads user inputs from a 4x4 matrix keypad and displays them to a 2-digit display.
+    Embedded C implements polling SPI transaction with a DS1722 temperature sensor. The result is read from an HTML webpage hosted on an ESP8266.
   </div>
 </div>
 
@@ -153,62 +151,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src=".\images\lab3_physical_circuit.jpg" class="img-fluid"></p>
+<p><img src=".\images\lab6_physical_circuit.jpg" class="img-fluid"></p>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
-<section id="section" class="level21">
-<p class="heading"></p>
-</section>
+<p>I wrote the SPI driver library by consulting the STM32L432KC reference manual and writing to the proper registers. Similarly, I wrote the DS1722 driver library by consulting the DS1722 data sheet and using my SPI driver. I had some help in writing my SPI transaction function by consulting Prof.&nbsp;Brake’s implementation.</p>
+<p>The DS1722 is simply wired on a breadboard to the SPI1 pins on the NUCLEO development board. Similarly, the LED is controlled from a NUCLEO pin and current limited using a 330 ohm resistor.</p>
+<p>The Internet of Things (IoT) webpage interface was implemented using the lab 6 starter code written by Prof.&nbsp;Brake.</p>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
-<p>The source code for the project can be found in my <a href="https://github.com/lalemos1/E155-uP-labs">E155 GitHub repository</a> under “<a href="https://github.com/lalemos1/E155-uP-labs/tree/main/lab3_keypad/fpga">lab3_keypad</a>.”</p>
-<section id="block-diagram" class="level3">
-<h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
-<p><img src=".\images\lab3_block_diagram.jpg" class="img-fluid"> Figure 1: Block diagram of SystemVerilog modules.</p>
-<p><img src=".\images.jpg" class="img-fluid"> Figure x: Block diagram of scanner submodule.</p>
-<p><img src=".\images.jpg" class="img-fluid"> Figure x: Block diagram of synchronizer submodule.</p>
-<p><img src=".\images.jpg" class="img-fluid"> Figure x: Block diagram of #### submodule.</p>
-<p>The block diagram in Figure 1 shows the lab3_ll_keypad top module, and the ############ submodules. See lab 2 for the two_dig_display block diagram.</p>
-</section>
-<section id="fsm-diagram" class="level3">
-<h3 class="anchored" data-anchor-id="fsm-diagram">FSM Diagram</h3>
-<p><img src=".\images\lab3_scanner_fsm_diagram.jpg" class="img-fluid"> Figure x: Diagram of the keypad scanner finite state machines</p>
-<p><img src=".\images\lab3_col_fsm_diagram.jpg" class="img-fluid"> Figure</p>
-<p><img src=".\images\lab3_digit_mem_fsm_diagram.jpg" class="img-fluid"> Figure</p>
-</section>
+<p>The source code for the project can be found in my <a href="https://github.com/lalemos1/E155-uP-labs">E155 GitHub repository</a> under “<a href="https://github.com/lalemos1/E155-uP-labs/tree/main/lab6_sensor_IoT">lab6_sensor_IoT</a>.”</p>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<p><img src=".\images\lab3_schematic.jpg" class="img-fluid"> Figure 3: Circuit schematic of the 4x4 matrix keypad and 2-digit display with debugging LEDs.</p>
-<p>Figure 2 shows ############### The 2-digit display LEDs PNP base current is nominally limited to ####### using a ####### resister.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\lab6_schematic.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Circuit schematic of the MCU connections to the DS1722 temperature sensor and LED.</figcaption>
+</figure>
+</div>
 </section>
 <section id="results-and-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h3>
-<p><img src=".\images\lab3_ll_keypad.png" class="img-fluid"> Figure 4: The lab3_ll_keypad top module functioning in simulation.</p>
-<p><img src=".\images\scanner1.png" class="img-fluid"> Figure 5:</p>
-<p><img src=".\images\scanner2.png" class="img-fluid"> Figure 6:</p>
-<p><img src=".\images\scanner3.png" class="img-fluid"> Figure 7:</p>
-<p><img src=".\images\digit_mem.png" class="img-fluid"> Figure 8:</p>
-<p><img src=".\images\keypad_decoder.png" class="img-fluid"> Figure 9:</p>
-<p><img src=".\images\scanner_fsm.png" class="img-fluid"> Figure 10:</p>
-<p><img src=".\images\col_fsm.png" class="img-fluid"> Figure 11:</p>
-<p><img src=".\images\debouncer.png" class="img-fluid"> Figure 12:</p>
-<p><img src=".\images\counter.png" class="img-fluid"> Figure 13:</p>
-<p>The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\webpage.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: HTML webpage displaying temperature read from the sensor. Also includes LED toggle.</figcaption>
+</figure>
+</div>
+<p>Both the LED toggle and the temperature sensor result properly render on the webpage. The ESP8266 is rather unreliable and the WIFI connection to my laptop often fails. Toggling the LED button actually toggles the physical LED. Using a heat gun on the temperature sensor and updating the page does show reasonable temperature responses to heating and cooling.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This lab nearly meets excellence, although it is missing the criterion where if two buttons are pressed and one is released, the second button press is registered.</p>
-<p>There are also the following known issues: 1. Reset still trips the debounce high for some reason 2. Needs to be manually reset upon startup 3. Can’t press zero twice for some reason 4. The debounce_low fail criterion doesn’t actually really work, although in hardware testing this was revealed to be unnecessary</p>
-<p>I spent about 30 hours working on this lab.</p>
+<p>This lab deserves proficiency because the temperature sensor is readable from the website and the LED is toggle-able. However, I didn’t accomplish the excellence goal of making the resolution configurable or include a sample SPI transaction.</p>
+<p>I spent about 16 hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
-<p>The monolithic prompt was certainly much more brief and was lacking certain necessary functions such as a debouncer. Both attempts synthesized immediately, although the decomposed prompt interestingly provided two approaches to solving the problem which halted synthesis until I commented out one of the options. Both modularized effectively, except the aforementioned missing functions.</p>
-<p>There were all kinds of neat SystemVerilog tricks I didn’t know about, such as the $clog2() function which the number of bits needed to represent a number, or the ~| bitwise operator for reading whether any of the rows were true. I also especially like how the 7-seg decoder was laid out with a nice ASCII graphic of the 7 segments and using hex rather than binary for the case states. I also liked how the decomposed prompt separated the row + column combinations into a queryable table, which seemed like a logical way of decoding the result.</p>
-<p>Both prompts were liable to create undriven connections and were definitely not usable without user-inputted debugging. I don’t like how both prompts read the row inputs in a non-one-hot manner, and the monolithic prompt didn’t even try decoding the input. The decomposed prompt did attempt this, but couldn’t have done it correctly without a specific keypad spec. I also did not like how the decomposed prompt handled the debouncer by simply waiting for a counter period, without actually checking if the input was steady.</p>
-<p>In the future, I’ll definitely try a decomposed approach, especially because it encourages me, the prompter, to be much more specific with my request and thereby improves the result. It also helps you as the designer to think about what exactly does your code need to implement when you go and write it yourself. Especially because I don’t like immediately copying code from LLMs, but rather using them as example code to build my design around so I can think of each line of code as I write it. I also find LLMs much more useful for debugging, which we didn’t handle here.</p>
+<p>I used Gemini Pro for both of my prompts.</p>
+<p>Prompt 1: I’m making a web portal to interface with a temperature sensor. Create a HTML page that looks good and is intuitive to show the temperature, control an LED, and change the precision of the readout.</p>
+<p>I’m quite happy with the result. The webpage it created is quite nice looking and seems to work with no issues. It used HTML, CSS, and javascript without me asking it to, which is slightly annoying since I don’t know those latter two languages if I’d like to debug the file. However, it contributes to a fairly nice page with a slick animation on the toggle button.</p>
+<p>Prompt 2: Write me a C function to carry out a SPI transaction to retrieve a temperature reading from a DS1722 sensor. Make use of CMSIS libraries for the STM32L432KC.</p>
+<p>Wow, I’m very impressed with the result. It created a SPI transfer function, a DS1722 reading function, and a demonstration for how to use both with clear and readable code. It’s only missing an SPI initialization function, which is understandable since this wasn’t part of the prompt. I didn’t even need to provide the reference manual for the STM32L432KC or the datasheet for the DS1722 and it was able to locate the proper STM32 registers, CMSIS, and DS1722 registers.</p>
 
 
 </section>

@@ -97,14 +97,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../resources.html"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../blog.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -165,6 +157,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
 <p>One seven segment display decoder was time multiplexed to two seven segment displays. Time multiplexing is where one expensive component is used for multiple different tasks at different times, synchronized to a clock. The time multiplexing was implemented by giving the decoder the output of two 4-throw switches at different times as selected by a divided clock and a multiplexer. Additionally, which digit of the 2-digit display was enabled according to the divided clock. A nominal clock frequency of 80 Hz was chosen to eliminate visible flicker without being so high as to bleed the two digits together.</p>
 <p>A five LED counter counts the sum of both 4-throw switches to ensure proper switch input to the time multiplexer.</p>
+<p>The current limiting resistors were sized to 330 ohms. According to the iCE40-UltraPlus-Family-Data-Sheet, Table 4.17 “sysI/O Single-Ended DC Electrical Characteristics,” when the FPGA is supplied with 3.3VDC the I/O pins can output a maximum of 8 mA. However, I measured that despite supplying my FPGA with 3.3V, the I/O pins could only output up to 2.2V. Therefore, using R &gt;= V / I, 2.2V / 8 mA &gt;= 275 ohms &lt; 330 ohms.</p>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
