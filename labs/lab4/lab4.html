@@ -154,35 +154,35 @@ ul.task-list li input[type="checkbox"] {
 <p><img src=".\images\lab4_physical_circuit.jpg" class="img-fluid"></p>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
-<section id="section" class="level21">
-<p class="heading"></p>
-</section>
+<p>The design implements a blocking audio player using two timer peripherals, the first for counting the period over a note’s wavelength (pitch clock), and the second for counting the total length of playback of a note or a rest (duration clock). I implemented playback by writing my own playback library which writes to the relevant registers to initialize, count, and reset the two timers. I chose TIM15 and TIM16 since they are general purpose timer peripherals which are not attached to any other peripherals, so they don’t run the risk of conflicting with other peripherals on the microcontroller.</p>
+<p>The pitch clock is a divided PLL clock down to 500kHz to give approximately 1% accuracy over the frequency range of 220 - 1000 Hz. For example, f_220 = p_cnt / p_freq = 2272 / 500,000 = 219.97 ≈ 220 Hz. Or f_999 = p_cnt / p_freq = 500 / 500,000 = 1000 Hz ≈ 999 Hz.</p>
+<p>The duration timer is a divided PLL clock down to 10kHz because the delays measured in milliseconds don’t require nearly as much precision and therefore can handle a slower clock.</p>
+<p>Individual pitches are calculated to be accurate within 1% across the frequency range of 220-1000 Hz. (calculations should be provided in the report to verify this)</p>
+<p>I debugged the code by implementing it first as an LED blinker. Once I implemented the tone control I built the audio breadboard according to the recommended specifications according to the LM386 audio amplifier datasheet. This allowed me to verify that my output was playing at the an audibly correct pitch and speed.</p>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
 <p>The source code for the project can be found in my <a href="https://github.com/lalemos1/E155-uP-labs">E155 GitHub repository</a> under “<a href="https://github.com/lalemos1/E155-uP-labs/tree/main/lab4_audio">lab4_audio</a>.”</p>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<p><img src=".\images\lab4_schematic.jpg" class="img-fluid"> Figure 1: Circuit schematic of</p>
-<p>Figure 1 shows ###############</p>
+<p><img src=".\images\lab4_schematic.png" class="img-fluid"> Figure 1: Circuit schematic according to the LM386 audio amplifier datasheet typical application.</p>
+<p>I used a 220uF coupling capacitor and a 47nF filter capacitor rather than the recommended 250uF and 50nF, which had no audible effect on the output.</p>
+<p>I also added a 100 ohm potentiometer to adjust the volume.</p>
 </section>
 <section id="results-and-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h3>
-<p><img src=".\images.png" class="img-fluid"> Figure 2:</p>
-<p><img src=".\images.png" class="img-fluid"> Figure 3:</p>
-<p><img src=".\images.png" class="img-fluid"> Figure 4:</p>
-<p>results</p>
+<p>I’m not sure how to embed a video here, but the playback works! It’s clearly Fur Elise, has proper pauses between notes, plays audibly accurate pitches, and plays the full song.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>This lab meets the proficiency specification since it plays the provided Fur Elise starter code file. I did not create a custom song nor did I provide maximum and minimum frequency and duration calculations.</p>
-<p>I spent about 15 hours working on this lab.</p>
+<p>I spent about 16 hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
 <p>Prompt: What timers should I use on the STM32L432KC to generate frequencies ranging from 220Hz to 1kHz? What’s the best choice of timer if I want to easily connect it to a GPIO pin? What formulae are relevant, and what registers need to be set to configure them properly?</p>
-<p>I was astounded by how mediocre the first attempt at prompting the LLM was and how useful the second attempt was when I attached the reference manual. The response blazingly faster (the first response took a whole 2 minutes to think; the second response was mere seconds). In addition, the output was of a much higher quality. The first response gave me false information, such as the existence of a general purpose “TIM17”, and garbled register writes for things like configuring the GPIO (such as: <code>GPIOA-&gt;OSPEEDR = (GPIOA-&gt;OSPEEDR &amp; ~(3U &lt;&lt; (5*2))) | (1U &lt;&lt; (5*2)); // medium</code>). The second response gave me a detailed set of options between using the PWM mode or the output capture modes. The formulae were about comparable. The LLM was able to summarize information in seconds which took me hours to derive from the confusing layout and wording of the reference manual. It is amazingly helpful for searching the reference manual.</p>
+<p>I was astounded by how mediocre the first attempt at prompting the LLM was and how useful the second attempt was when I attached the reference manual. The response was blazingly faster (the first response took a whole 2 minutes to think; the second response was mere seconds). In addition, the output was of a much higher quality. The first response gave me false information, such as the existence of a general purpose “TIM17”, and garbled register writes for things like configuring the GPIO (such as: <code>GPIOA-&gt;OSPEEDR = (GPIOA-&gt;OSPEEDR &amp; ~(3U &lt;&lt; (5*2))) | (1U &lt;&lt; (5*2)); // medium</code>). The second response gave me a detailed set of options between using the PWM mode or the output capture modes. The formulae were about comparable. The LLM was able to summarize information in seconds which took me hours to derive from the confusing layout and wording of the reference manual. It is amazingly helpful for searching the reference manual.</p>
 <p>The second response was still slightly deficient in a few ways. Notably, it said nothing about why we were recommended to use TIM15/16, which was its lack of connection to any other peripherals. It also failed to recommend the far simpler approach of using software to write to a GPIO based on a timer overflow event rather than directly outputting the PWM. While both approaches work, it would’ve been nice if the LLM would’ve suggested the simpler approach for those short on time (like myself, as I always am in MicroP’s).</p>
 
 
