@@ -14,6 +14,11 @@ A nominal clock frequency of 80 Hz was chosen to eliminate visible flicker witho
 
 A five LED counter counts the sum of both 4-throw switches to ensure proper switch input to the time multiplexer.
 
+The current limiting resistors were sized to 330 ohms.
+According to the iCE40-UltraPlus-Family-Data-Sheet, Table 4.17 "sysI/O Single-Ended DC Electrical Characteristics," when the FPGA is supplied with 3.3V the I/O pins can output a maximum of 8 mA.
+However, I measured that despite supplying my FPGA with 3.3V, the I/O pins could only output up to 2.6V.
+Therefore, using R >= V / I, 2.6V / 8 mA >= 325 ohms < 330 ohms.
+
 ## Technical Documentation
 The source code for the project can be found in the [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab2_ll_two_displays](https://github.com/lalemos1/E155-uP-labs/tree/main/lab2_ll_two_displays/fpga).”
 

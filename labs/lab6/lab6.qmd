@@ -1,0 +1,57 @@
+---
+title: "Lab 6: SPI Temperature Sensor IoT"
+description: "Embedded C implements polling SPI transaction with a DS1722 temperature sensor. The result is read from an HTML webpage hosted on an ESP8266."
+image: .\images\lab6_physical_circuit.jpg
+---
+![](.\images\lab6_physical_circuit.jpg)
+
+## Design and Testing Methodology
+I wrote the SPI driver library by consulting the STM32L432KC reference manual and writing to the proper registers.
+Similarly, I wrote the DS1722 driver library by consulting the DS1722 data sheet and using my SPI driver.
+I had some help in writing my SPI transaction function by consulting Prof. Brake's implementation.
+
+The DS1722 is simply wired on a breadboard to the SPI1 pins on the NUCLEO development board.
+Similarly, the LED is controlled from a NUCLEO pin and current limited using a 330 ohm resistor.
+
+The Internet of Things (IoT) webpage interface was implemented using the lab 6 starter code written by Prof. Brake.
+
+## Technical Documentation
+The source code for the project can be found in my [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab6_sensor_IoT](https://github.com/lalemos1/E155-uP-labs/tree/main/lab6_sensor_IoT).”
+
+
+### Schematic
+
+![Figure 1: Circuit schematic of the MCU connections to the DS1722 temperature sensor and LED.](.\images\lab6_schematic.png)
+
+
+### Results and Discussion
+ 
+![Figure 2: HTML webpage displaying temperature read from the sensor. Also includes LED toggle.](.\images\webpage.png)
+
+Both the LED toggle and the temperature sensor result properly render on the webpage.
+The ESP8266 is rather unreliable and the WIFI connection to my laptop often fails.
+Toggling the LED button actually toggles the physical LED.
+Using a heat gun on the temperature sensor and updating the page does show reasonable temperature responses to heating and cooling. 
+
+## Conclusion
+This lab deserves proficiency because the temperature sensor is readable from the website and the LED is toggle-able.
+However, I didn't accomplish the excellence goal of making the resolution configurable or include a sample SPI transaction.
+
+I spent about 16 hours working on this lab. 
+
+## AI Prototype Summary
+I used Gemini Pro for both of my prompts.
+
+Prompt 1: I’m making a web portal to interface with a temperature sensor. Create a HTML page that looks good and is intuitive to show the temperature, control an LED, and change the precision of the readout.
+
+I'm quite happy with the result. 
+The webpage it created is quite nice looking and seems to work with no issues.
+It used HTML, CSS, and javascript without me asking it to, which is slightly annoying since I don't know those latter two languages if I'd like to debug the file.
+However, it contributes to a fairly nice page with a slick animation on the toggle button.
+
+Prompt 2: Write me a C function to carry out a SPI transaction to retrieve a temperature reading from a DS1722 sensor. Make use of CMSIS libraries for the STM32L432KC.
+
+Wow, I'm very impressed with the result.
+It created a SPI transfer function, a DS1722 reading function, and a demonstration for how to use both with clear and readable code.
+It's only missing an SPI initialization function, which is understandable since this wasn't part of the prompt.
+I didn't even need to provide the reference manual for the STM32L432KC or the datasheet for the DS1722 and it was able to locate the proper STM32 registers, CMSIS, and DS1722 registers.

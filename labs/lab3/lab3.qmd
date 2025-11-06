@@ -6,90 +6,91 @@ image: .\images\lab3_physical_circuit.jpg
 ![](.\images\lab3_physical_circuit.jpg)
 
 ## Design and Testing Methodology
-#####################
+This design uses largely the same physical circuit from lab 2, except for the introduction of a 4x4 matrix keypad as input to the FPGA instead of the input switches.
+Additionally, two PNP transistors were used for sourcing current to the 2-digit display.
+
+The SystemVerilog HDL was designed to scan and properly debounce user inputs from the keypad.
+The keypad is scanned using the `scanner_fsm` finite state machine, asynchronous user input is synchronized, the keypad value is decoded as a binary value intelligible to the `two_dig_display`, the two values to be displayed are stored in the `digit_mem` finite state machine, which finally sends those two values to the `two_dig_display`.
+`scanner_fsm` instantiates two sub-fsm's, `debouncer` and `col_fsm`. `col_fsm` scans the keypad column-by-column, while `debouncer` makes sure that user inputs are legitimate presses (anti-ghosting) and that the input has settled to its high value.
+When the button is released, the low state is similarly debounced to prevent a false keypress.
 
 ## Technical Documentation
 The source code for the project can be found in my [E155 GitHub repository](https://github.com/lalemos1/E155-uP-labs) under “[lab3_keypad](https://github.com/lalemos1/E155-uP-labs/tree/main/lab3_keypad/fpga).”
 
 ### Block Diagram
-![](.\images\lab3_block_diagram.jpg)
-Figure 1: Block diagram of SystemVerilog modules.
+![Figure 1: Block diagram of all SystemVerilog submodules which implement the keypad scanner.](.\images\blockDiag-lab3_ll_keypad.jpg)
 
-![](.\images\.jpg)
-Figure x: Block diagram of scanner submodule.
+![Figure 2: Block diagram of the scanner submodule.](.\images\blockDiag-scanner.jpg)
 
-![](.\images\.jpg)
-Figure x: Block diagram of synchronizer submodule.
+![Figure 3: Block diagram of the synchronizer submodule.](.\images\blockDiag-synchronizer.jpg)
 
-![](.\images\.jpg)
-Figure x: Block diagram of #### submodule.
+The block diagram in Figure 1 shows the `lab3_ll_keypad` top module, and the `synchronizer`, `scanner`, `keypad_decoder`, `digit_mem`, and `two_dig_display` submodules.  
 
-The block diagram in Figure 1 shows the lab3_ll_keypad top module, and the ############ submodules. See lab 2 for the two_dig_display block diagram.
+`keypad_decoder` is simply combinational logic while `digit_mem` is a finite state machine as explained in the following section. See lab 2 for the `two_dig_display` block diagram.
 
-### FSM Diagram
-![](.\images\lab3_scanner_fsm_diagram.jpg)
-Figure x: Diagram of the keypad scanner finite state machines
+### FSM Diagrams
+![Figure 4: Diagram of the keypad scanner finite state machine.](.\images\lab3_scanner_fsm_diagram.png)
 
-![](.\images\lab3_col_fsm_diagram.jpg)
-Figure 
+![Figure 5: Diagram of the column scanner finite state machine.](.\images\lab3_col_fsm_diagram.png)
 
-![](.\images\lab3_digit_mem_fsm_diagram.jpg)
-Figure 
+![Figure 6: Diagram of the digit memory finite state machine.](.\images\lab3_digit_mem_fsm_diagram.png)
 
+The above finite state machine diagrams show how the `scanner`, `col_fsm`, and `digit_mem` submodules work.
+
+The `scanner` scans a column on the keypad, waits 10 clock pulses to ensure the synchronizer has processed any user inputs, reads the value, if it is a legitimate input it is debounced, and then turns on until the input changes.
+Then it is debounced again and begins scanning again.
+Additionally, an error checker is used for debugging and resetting the scanner if there is a false input.
+
+`col_fsm` simply scans one column at a time.
+
+`digit_mem` idles until the `keypad_decoder` sends it a valid keypress value, which stores the new value as the first digit and discards the old second digit.
+Then it stays in the ON state until the key is no longer being pressed.
 
 ### Schematic
+![Figure 7: Circuit schematic of the 4x4 matrix keypad and 2-digit display. Debugging LEDs are omitted.](.\images\lab3_schematic.png)
 
-![](.\images\lab3_schematic.jpg)
-Figure 3: Circuit schematic of the 4x4 matrix keypad and 2-digit display with debugging LEDs.
-
-Figure 2 shows ###############
-The 2-digit display LEDs PNP base current is nominally limited to ####### using a ####### resister.
+The circuit schematic shows the PNP transistors, keypad, reset pushbutton, and the 2-digit display LEDs.
 
 ### Results and Discussion
  
-![](.\images\lab3_ll_keypad.png)
-Figure 4: The lab3_ll_keypad top module functioning in simulation.
+![Figure 8: The lab3_ll_keypad top module functioning in simulation.](.\images\lab3_ll_keypad.png)
 
-![](.\images\scanner1.png)
-Figure 5: 
+![Figure 9: The scanner submodule start-up state functioning in simulation.](.\images\scanner1.png)
 
-![](.\images\scanner2.png)
-Figure 6:  
+![Figure 10: The scanner submodule properly debouncing high after 2.4 milliseconds.](.\images\scanner2.png)
 
-![](.\images\scanner3.png)
-Figure 7: 
+![Figure 11: The scanner submodule properly debouncing low after 4.8 milliseconds.](.\images\scanner3.png)
 
-![](.\images\digit_mem.png)
-Figure 8: 
+![Figure 12: The digit_mem submodule properly storing and displaying keypad values in simulation.](.\images\digit_mem.png)
 
-![](.\images\keypad_decoder.png)
-Figure 9: 
+![Figure 13: The keypad_decoder submodule properly converting keypad values to values understandable to the two_dig_display.](.\images\keypad_decoder.png)
 
-![](.\images\scanner_fsm.png)
-Figure 10: 
+![Figure 14: The scanner_fsm submodule properly cycling through its different states.](.\images\scanner_fsm.png)
 
-![](.\images\col_fsm.png)
-Figure 11: 
+![Figure 15: The col_fsm submodule properly cycling through the four different columns of the keypad.](.\images\col_fsm.png)
 
-![](.\images\debouncer.png)
-Figure 12: 
+![Figure 16: The debouncer submodule properly flagging steady and error states.](.\images\debouncer.png)
 
-![](.\images\counter.png)
-Figure 13: 
+![Figure 17: The counter submodule properly counting and ticking at the proper frequency.](.\images\counter.png)
 
-The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected. 
+The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected, chiefly the error state in my `scanner` submodule was causing me grief.
 
+The hardware implementation works!
+Keypresses are registered on the two segment display and no false inputs are registered.
 
 ## Conclusion
 This lab nearly meets excellence, although it is missing the criterion where if two buttons are pressed and one is released, the second button press is registered.
 
 There are also the following known issues:
-1. Reset still trips the debounce high for some reason
-2. Needs to be manually reset upon startup
-3. Can't press zero twice for some reason
-4. The debounce_low fail criterion doesn't actually really work, although in hardware testing this was revealed to be unnecessary
 
-I spent about 30 hours working on this lab. 
+1. Reset still trips the debounce high for some reason.
+2. Needs to be manually reset upon startup.
+3. Can't press zero twice for some reason.
+4. The debounce_low fail criterion doesn't actually really work, although in hardware testing this was revealed to be unnecessary.
+5. There's a huge amount of pickup noise in the circuit which mostly goes away when earth grounded by an oscilloscope.
+
+
+I spent about 35 hours working on this lab. 
 
 ## AI Prototype Summary
 The monolithic prompt was certainly much more brief and was lacking certain necessary functions such as a debouncer. Both attempts synthesized immediately, although the decomposed prompt interestingly provided two approaches to solving the problem which halted synthesis until I commented out one of the options. Both modularized effectively, except the aforementioned missing functions.
