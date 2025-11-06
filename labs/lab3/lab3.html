@@ -117,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#technical-documentation" id="toc-technical-documentation" class="nav-link" data-scroll-target="#technical-documentation">Technical Documentation</a>
   <ul class="collapse">
   <li><a href="#block-diagram" id="toc-block-diagram" class="nav-link" data-scroll-target="#block-diagram">Block Diagram</a></li>
-  <li><a href="#fsm-diagram" id="toc-fsm-diagram" class="nav-link" data-scroll-target="#fsm-diagram">FSM Diagram</a></li>
+  <li><a href="#fsm-diagrams" id="toc-fsm-diagrams" class="nav-link" data-scroll-target="#fsm-diagrams">FSM Diagrams</a></li>
   <li><a href="#schematic" id="toc-schematic" class="nav-link" data-scroll-target="#schematic">Schematic</a></li>
   <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
   </ul></li>
@@ -156,52 +156,148 @@ ul.task-list li input[type="checkbox"] {
 <p><img src=".\images\lab3_physical_circuit.jpg" class="img-fluid"></p>
 <section id="design-and-testing-methodology" class="level2">
 <h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
-<section id="section" class="level21">
-<p class="heading"></p>
-</section>
+<p>This design uses largely the same physical circuit from lab 2, except for the introduction of a 4x4 matrix keypad as input to the FPGA instead of the input switches. Additionally, two PNP transistors were used for sourcing current to the 2-digit display.</p>
+<p>The SystemVerilog HDL was designed to scan and properly debounce user inputs from the keypad. The keypad is scanned using the <code>scanner_fsm</code> finite state machine, asynchronous user input is synchronized, the keypad value is decoded as a binary value intelligible to the <code>two_dig_display</code>, the two values to be displayed are stored in the <code>digit_mem</code> finite state machine, which finally sends those two values to the <code>two_dig_display</code>. <code>scanner_fsm</code> instantiates two sub-fsm’s, <code>debouncer</code> and <code>col_fsm</code>. <code>col_fsm</code> scans the keypad column-by-column, while <code>debouncer</code> makes sure that user inputs are legitimate presses (anti-ghosting) and that the input has settled to its high value. When the button is released, the low state is similarly debounced to prevent a false keypress.</p>
 </section>
 <section id="technical-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="technical-documentation">Technical Documentation</h2>
 <p>The source code for the project can be found in my <a href="https://github.com/lalemos1/E155-uP-labs">E155 GitHub repository</a> under “<a href="https://github.com/lalemos1/E155-uP-labs/tree/main/lab3_keypad/fpga">lab3_keypad</a>.”</p>
 <section id="block-diagram" class="level3">
 <h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
-<p><img src=".\images\lab3_block_diagram.jpg" class="img-fluid"> Figure 1: Block diagram of SystemVerilog modules.</p>
-<p><img src=".\images.jpg" class="img-fluid"> Figure x: Block diagram of scanner submodule.</p>
-<p><img src=".\images.jpg" class="img-fluid"> Figure x: Block diagram of synchronizer submodule.</p>
-<p><img src=".\images.jpg" class="img-fluid"> Figure x: Block diagram of #### submodule.</p>
-<p>The block diagram in Figure 1 shows the lab3_ll_keypad top module, and the ############ submodules. See lab 2 for the two_dig_display block diagram.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\blockDiag-lab3_ll_keypad.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Block diagram of all SystemVerilog submodules which implement the keypad scanner.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\blockDiag-scanner.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: Block diagram of the scanner submodule.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\blockDiag-synchronizer.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 3: Block diagram of the synchronizer submodule.</figcaption>
+</figure>
+</div>
+<p>The block diagram in Figure 1 shows the <code>lab3_ll_keypad</code> top module, and the <code>synchronizer</code>, <code>scanner</code>, <code>keypad_decoder</code>, <code>digit_mem</code>, and <code>two_dig_display</code> submodules.</p>
+<p><code>keypad_decoder</code> is simply combinational logic while <code>digit_mem</code> is a finite state machine as explained in the following section. See lab 2 for the <code>two_dig_display</code> block diagram.</p>
 </section>
-<section id="fsm-diagram" class="level3">
-<h3 class="anchored" data-anchor-id="fsm-diagram">FSM Diagram</h3>
-<p><img src=".\images\lab3_scanner_fsm_diagram.jpg" class="img-fluid"> Figure x: Diagram of the keypad scanner finite state machines</p>
-<p><img src=".\images\lab3_col_fsm_diagram.jpg" class="img-fluid"> Figure</p>
-<p><img src=".\images\lab3_digit_mem_fsm_diagram.jpg" class="img-fluid"> Figure</p>
+<section id="fsm-diagrams" class="level3">
+<h3 class="anchored" data-anchor-id="fsm-diagrams">FSM Diagrams</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\lab3_scanner_fsm_diagram.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4: Diagram of the keypad scanner finite state machine.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\lab3_col_fsm_diagram.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 5: Diagram of the column scanner finite state machine.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\lab3_digit_mem_fsm_diagram.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 6: Diagram of the digit memory finite state machine.</figcaption>
+</figure>
+</div>
+<p>The above finite state machine diagrams show how the <code>scanner</code>, <code>col_fsm</code>, and <code>digit_mem</code> submodules work.</p>
+<p>The <code>scanner</code> scans a column on the keypad, waits 10 clock pulses to ensure the synchronizer has processed any user inputs, reads the value, if it is a legitimate input it is debounced, and then turns on until the input changes. Then it is debounced again and begins scanning again. Additionally, an error checker is used for debugging and resetting the scanner if there is a false input.</p>
+<p><code>col_fsm</code> simply scans one column at a time.</p>
+<p><code>digit_mem</code> idles until the <code>keypad_decoder</code> sends it a valid keypress value, which stores the new value as the first digit and discards the old second digit. Then it stays in the ON state until the key is no longer being pressed.</p>
 </section>
 <section id="schematic" class="level3">
 <h3 class="anchored" data-anchor-id="schematic">Schematic</h3>
-<p><img src=".\images\lab3_schematic.jpg" class="img-fluid"> Figure 3: Circuit schematic of the 4x4 matrix keypad and 2-digit display with debugging LEDs.</p>
-<p>Figure 2 shows ############### The 2-digit display LEDs PNP base current is nominally limited to ####### using a ####### resister.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\lab3_schematic.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 7: Circuit schematic of the 4x4 matrix keypad and 2-digit display. Debugging LEDs are omitted.</figcaption>
+</figure>
+</div>
+<p>The circuit schematic shows the PNP transistors, keypad, reset pushbutton, and the 2-digit display LEDs.</p>
 </section>
 <section id="results-and-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h3>
-<p><img src=".\images\lab3_ll_keypad.png" class="img-fluid"> Figure 4: The lab3_ll_keypad top module functioning in simulation.</p>
-<p><img src=".\images\scanner1.png" class="img-fluid"> Figure 5:</p>
-<p><img src=".\images\scanner2.png" class="img-fluid"> Figure 6:</p>
-<p><img src=".\images\scanner3.png" class="img-fluid"> Figure 7:</p>
-<p><img src=".\images\digit_mem.png" class="img-fluid"> Figure 8:</p>
-<p><img src=".\images\keypad_decoder.png" class="img-fluid"> Figure 9:</p>
-<p><img src=".\images\scanner_fsm.png" class="img-fluid"> Figure 10:</p>
-<p><img src=".\images\col_fsm.png" class="img-fluid"> Figure 11:</p>
-<p><img src=".\images\debouncer.png" class="img-fluid"> Figure 12:</p>
-<p><img src=".\images\counter.png" class="img-fluid"> Figure 13:</p>
-<p>The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\lab3_ll_keypad.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 8: The lab3_ll_keypad top module functioning in simulation.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\scanner1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 9: The scanner submodule start-up state functioning in simulation.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\scanner2.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 10: The scanner submodule properly debouncing high after 2.4 milliseconds.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\scanner3.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 11: The scanner submodule properly debouncing low after 4.8 milliseconds.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\digit_mem.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 12: The digit_mem submodule properly storing and displaying keypad values in simulation.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\keypad_decoder.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 13: The keypad_decoder submodule properly converting keypad values to values understandable to the two_dig_display.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\scanner_fsm.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 14: The scanner_fsm submodule properly cycling through its different states.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\col_fsm.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 15: The col_fsm submodule properly cycling through the four different columns of the keypad.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\debouncer.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 16: The debouncer submodule properly flagging steady and error states.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\images\counter.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 17: The counter submodule properly counting and ticking at the proper frequency.</figcaption>
+</figure>
+</div>
+<p>The keypad scanner functioned as I expected in simulation, although hardware debugging revealed oversights in my simulation which I later corrected, chiefly the error state in my <code>scanner</code> submodule was causing me grief.</p>
+<p>The hardware implementation works! Keypresses are registered on the two segment display and no false inputs are registered.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>This lab nearly meets excellence, although it is missing the criterion where if two buttons are pressed and one is released, the second button press is registered.</p>
-<p>There are also the following known issues: 1. Reset still trips the debounce high for some reason 2. Needs to be manually reset upon startup 3. Can’t press zero twice for some reason 4. The debounce_low fail criterion doesn’t actually really work, although in hardware testing this was revealed to be unnecessary</p>
-<p>I spent about 30 hours working on this lab.</p>
+<p>There are also the following known issues:</p>
+<ol type="1">
+<li>Reset still trips the debounce high for some reason.</li>
+<li>Needs to be manually reset upon startup.</li>
+<li>Can’t press zero twice for some reason.</li>
+<li>The debounce_low fail criterion doesn’t actually really work, although in hardware testing this was revealed to be unnecessary.</li>
+<li>There’s a huge amount of pickup noise in the circuit which mostly goes away when earth grounded by an oscilloscope.</li>
+</ol>
+<p>I spent about 35 hours working on this lab.</p>
 </section>
 <section id="ai-prototype-summary" class="level2">
 <h2 class="anchored" data-anchor-id="ai-prototype-summary">AI Prototype Summary</h2>
